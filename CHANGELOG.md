@@ -5,7 +5,7 @@
 
 ### Features
 
-* update contact center insight v1 prior to launch ([#8](https://www.github.com/googleapis/python-contact-center-insights/issues/8)) ([1df2eff](https://www.github.com/googleapis/python-contact-center-insights/commit/1df2eff788db7ed1a867202000af396065d67b9b))
+* update contact center insights v1 prior to launch ([#8](https://www.github.com/googleapis/python-contact-center-insights/issues/8)) ([1df2eff](https://www.github.com/googleapis/python-contact-center-insights/commit/1df2eff788db7ed1a867202000af396065d67b9b))
 
 
 ### Bug Fixes
