@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# [START contactcenterinsights_create_conversation]
+# [START contact_center_insights_create_conversation]
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import client
 from google.cloud.contact_center_insights_v1.types import resources
 
@@ -26,4 +26,4 @@ def create_conversation(parent: str, conversation: resources.Conversation) -> re
     return conversation
 
 
-# [END contactcenterinsights_create_conversation]
+# [END contact_center_insights_create_conversation]

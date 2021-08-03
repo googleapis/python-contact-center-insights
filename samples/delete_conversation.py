@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# [START contactcenterinsights_delete_conversation]
+# [START contact_center_insights_create_conversation]
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import client
 from google.cloud.contact_center_insights_v1.types import resources
 
@@ -23,4 +23,4 @@ def delete_conversation(name: str) -> None:
     insights_client.delete_conversation(name=name)
     print("Deleted a conversation named {}".format(name))
 
-# [END contactcenterinsights_delete_conversation]
+# [END contact_center_insights_create_conversation]
