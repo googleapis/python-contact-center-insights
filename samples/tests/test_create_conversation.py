@@ -22,7 +22,7 @@ from google.cloud.contact_center_insights_v1.types import resources
 
 def test_create_conversation(capsys):
     project_id = os.getenv('PROJECT_ID', '')
-    transcript_uri = os.getenv('TRANSCRIPT_URI', 'gs://example-bucket/some-example.json')
+    transcript_uri = os.getenv('TRANSCRIPT_URI', 'gs://cloud-samples-data/ccai/chat_sample.json')
 
     # Construct the parent resource.
     assert project_id
