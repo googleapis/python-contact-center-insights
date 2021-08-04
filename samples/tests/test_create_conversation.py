@@ -23,29 +23,16 @@ from google.cloud.contact_center_insights_v1.types import resources
 def test_create_conversation(capsys):
     project_id = os.getenv('PROJECT_ID', '')
     transcript_uri = os.getenv('TRANSCRIPT_URI', 'gs://cloud-samples-data/ccai/chat_sample.json')
-
-    # Construct the parent resource.
-    assert project_id
-    parent = "projects/{}/locations/us-central1".format(project_id)
-
-    # Provide a Cloud Storage URI that contains a conversation transcript.
-    data_source = resources.ConversationDataSource()
-    data_source.gcs_source.transcript_uri = transcript_uri
-
-    # Construct a conversation object.
-    conversation = resources.Conversation()
-    conversation.medium = resources.Conversation.Medium.CHAT
-    conversation.data_source = data_source
+    audio_uri = os.getenv('AUDIO_URI', 'gs://cloud-samples-data/ccai/voice_6912.txt')
 
     # Create a conversation.
-    conversation = create_conversation.create_conversation(parent, conversation)
+    assert project_id
+    conversation = create_conversation.create_conversation(project_id, transcript_uri, audio_uri)
     conversation_name = conversation.name
-
     out, err = capsys.readouterr()
     assert "Created a conversation named {}".format(conversation_name) in out
 
-    # Clean up the conversation that we just created.
+    # Delete the conversation that we just created.
     delete_conversation.delete_conversation(conversation_name)
-
     out, err = capsys.readouterr()
     assert "Deleted a conversation named {}".format(conversation_name) in out
