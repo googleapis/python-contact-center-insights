@@ -17,7 +17,6 @@ import os
 
 from samples import create_conversation
 from samples import delete_conversation
-from google.cloud.contact_center_insights_v1.types import resources
 
 
 def test_create_conversation(capsys):
