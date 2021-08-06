@@ -23,9 +23,9 @@ def test_create_conversation(capsys):
     project_id = os.getenv('PROJECT_ID', '')
     transcript_uri = os.getenv('TRANSCRIPT_URI', 'gs://cloud-samples-data/ccai/chat_sample.json')
     audio_uri = os.getenv('AUDIO_URI', 'gs://cloud-samples-data/ccai/voice_6912.txt')
+    assert project_id
 
     # Create a conversation.
-    assert project_id
     conversation = create_conversation.create_conversation(project_id, transcript_uri, audio_uri)
     conversation_name = conversation.name
     out, err = capsys.readouterr()
