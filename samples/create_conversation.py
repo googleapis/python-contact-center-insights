@@ -27,7 +27,7 @@ def create_conversation(project_id: str, transcript_uri: str, audio_uri: str) ->
     data_source.gcs_source.transcript_uri = transcript_uri
     data_source.gcs_source.audio_uri = audio_uri
 
-    # Construct a conversation object.
+    # Construct a conversation.
     conversation = resources.Conversation()
     conversation.data_source = data_source
     conversation.medium = resources.Conversation.Medium.CHAT
