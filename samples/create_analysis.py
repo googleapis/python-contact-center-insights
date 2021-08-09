@@ -13,11 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# [START contactcenterinsights_create_analysis]
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import async_client
 from google.cloud.contact_center_insights_v1.types import resources
 
 
+# [START contactcenterinsights_create_analysis]
 def create_analysis(conversation_name: str) -> resources.Analysis:
     # Construct an analysis.
     analysis = resources.Analysis()

@@ -13,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# [START contactcenterinsights_delete_analysis]
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import client
 
 
@@ -21,5 +20,3 @@ def delete_analysis(name: str) -> None:
     insights_client = client.ContactCenterInsightsClient()
     insights_client.delete_analysis(name=name)
     print("Deleted an analysis named {}".format(name))
-
-# [END contactcenterinsights_delete_analysis]

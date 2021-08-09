@@ -35,3 +35,20 @@ def test_create_conversation(capsys):
     delete_conversation.delete_conversation(conversation_name)
     out, err = capsys.readouterr()
     assert "Deleted a conversation named {}".format(conversation_name) in out
+
+
+def test_create_conversation_with_ttl(capsys):
+    project_id = os.getenv('PROJECT_ID', '')
+    transcript_uri = os.getenv('TRANSCRIPT_URI', 'gs://cloud-samples-data/ccai/chat_sample.json')
+    assert project_id
+
+    # Create a conversation.
+    conversation = create_conversation.create_conversation_with_ttl(project_id, transcript_uri, 600)
+    conversation_name = conversation.name
+    out, err = capsys.readouterr()
+    assert "Created a conversation named {}".format(conversation_name) in out
+
+    # Delete the conversation that we just created.
+    delete_conversation.delete_conversation(conversation_name)
+    out, err = capsys.readouterr()
+    assert "Deleted a conversation named {}".format(conversation_name) in out

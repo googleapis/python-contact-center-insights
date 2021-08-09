@@ -13,11 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# [START contactcenterinsights_export_data_to_bigquery]
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import async_client
 from google.cloud.contact_center_insights_v1.types import contact_center_insights
 
 
+# [START contactcenterinsights_export_data_to_bigquery]
 def export_data_to_bigquery(project_id: str, data_filter: str, kms_key: str,
                             bigquery_project_id: str, bigquery_dataset: str, bigquery_table: str) -> None:
     # Construct an export request.
