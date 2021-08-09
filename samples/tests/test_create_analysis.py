@@ -21,7 +21,7 @@ from samples import delete_analysis
 from samples import delete_conversation
 
 
-def test_create_analysis(capsys):
+def test_create_analysis():
     project_id = os.getenv('PROJECT_ID', '')
     transcript_uri = os.getenv('TRANSCRIPT_URI', 'gs://cloud-samples-data/ccai/chat_sample.json')
     audio_uri = os.getenv('AUDIO_URI', 'gs://cloud-samples-data/ccai/voice_6912.txt')
@@ -30,20 +30,12 @@ def test_create_analysis(capsys):
     # Create a conversation.
     conversation = create_conversation.create_conversation(project_id, transcript_uri, audio_uri)
     conversation_name = conversation.name
-    out, err = capsys.readouterr()
-    assert "Created a conversation named {}".format(conversation_name) in out
 
     # Create an analysis.
     analysis = create_analysis.create_analysis(conversation_name)
-    out, err = capsys.readouterr()
-    assert "Created an analysis named {}".format(analysis.name) in out
 
     # Delete the analysis that we just created.
     delete_analysis.delete_analysis(analysis.name)
-    out, err = capsys.readouterr()
-    assert "Deleted an analysis named {}".format(analysis.name) in out
 
     # Delete the conversation that we just created.
     delete_conversation.delete_conversation(conversation_name)
-    out, err = capsys.readouterr()
-    assert "Deleted a conversation named {}".format(conversation_name) in out

@@ -16,7 +16,10 @@
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import client
 
 
+# [START contactcenterinsights_delete_analysis]
 def delete_analysis(name: str) -> None:
     insights_client = client.ContactCenterInsightsClient()
     insights_client.delete_analysis(name=name)
     print("Deleted an analysis named {}".format(name))
+
+# [START contactcenterinsights_delete_analysis]
