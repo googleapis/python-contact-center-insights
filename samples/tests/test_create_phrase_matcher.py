@@ -19,33 +19,19 @@ from samples import create_phrase_matcher
 from samples import delete_phrase_matcher
 
 
-def test_create_phrase_matcher_phone_or_cellphone(capsys):
+def test_create_phrase_matcher_phone_or_cellphone():
     project_id = os.getenv('PROJECT_ID', '')
     assert project_id
 
-    # Create a phrase matcher.
+    # Create a phrase matcher then clean up by deleting it.
     phrase_matcher = create_phrase_matcher.create_phrase_matcher_phone_or_cellphone(project_id)
-    phrase_matcher_name = phrase_matcher.name
-    out, err = capsys.readouterr()
-    assert "Created a phrase matcher named {}".format(phrase_matcher_name) in out
-
-    # Delete the phrase matcher that we just created.
-    delete_phrase_matcher.delete_phrase_matcher(phrase_matcher_name)
-    out, err = capsys.readouterr()
-    assert "Deleted a phrase matcher named {}".format(phrase_matcher_name) in out
+    delete_phrase_matcher.delete_phrase_matcher(phrase_matcher.name)
 
 
 def test_create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery(capsys):
     project_id = os.getenv('PROJECT_ID', '')
     assert project_id
 
-    # Create a phrase matcher.
+    # Create a phrase matcher then clean up by deleting it.
     phrase_matcher = create_phrase_matcher.create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery(project_id)
-    phrase_matcher_name = phrase_matcher.name
-    out, err = capsys.readouterr()
-    assert "Created a phrase matcher named {}".format(phrase_matcher_name) in out
-
-    # Delete the phrase matcher that we just created.
-    delete_phrase_matcher.delete_phrase_matcher(phrase_matcher_name)
-    out, err = capsys.readouterr()
-    assert "Deleted a phrase matcher named {}".format(phrase_matcher_name) in out
+    delete_phrase_matcher.delete_phrase_matcher(phrase_matcher.name)
