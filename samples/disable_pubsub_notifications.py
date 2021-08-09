@@ -18,6 +18,7 @@ from google.cloud.contact_center_insights_v1.types import resources
 from google.protobuf import field_mask_pb2
 
 
+# [START contactcenterinsights_disable_pubsub_notifications]
 def disable_pubsub_notifications(project_id: str) -> None:
     # Construct a settings resource.
     settings = resources.Settings()
@@ -32,3 +33,5 @@ def disable_pubsub_notifications(project_id: str) -> None:
     insights_client = client.ContactCenterInsightsClient()
     insights_client.update_settings(settings=settings, update_mask=update_mask)
     print("Disabled Pub/Sub notifications")
+
+# [END contactcenterinsights_disable_pubsub_notifications]

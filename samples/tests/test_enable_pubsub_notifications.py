@@ -19,7 +19,7 @@ from samples import enable_pubsub_notifications
 from samples import disable_pubsub_notifications
 
 
-def test_enable_pubsub_notifications(capsys):
+def test_enable_pubsub_notifications():
     project_id = os.getenv('PROJECT_ID', '')
     topic_create_conversation = os.getenv('TOPIC_CREATE_CONVERSATION', '')
     topic_create_analysis = os.getenv('TOPIC_CREATE_ANALYSIS', '')
@@ -27,13 +27,7 @@ def test_enable_pubsub_notifications(capsys):
     assert topic_create_conversation
     assert topic_create_analysis
 
-    # Enable Pub/Sub notifications.
+    # Enable Pub/Sub notifications then clean up by disabling it.
     enable_pubsub_notifications.enable_pubsub_notifications(project_id, topic_create_conversation,
                                                             topic_create_analysis)
-    out, err = capsys.readouterr()
-    assert "Enabled Pub/Sub notifications" in out
-
-    # Clean up by disabling Pub/Sub notifications.
     disable_pubsub_notifications.disable_pubsub_notifications(project_id)
-    out, err = capsys.readouterr()
-    assert "Disabled Pub/Sub notifications" in out
