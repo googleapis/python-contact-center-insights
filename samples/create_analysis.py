@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 # [START contactcenterinsights_create_analysis]
-import time
-
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import async_client
 from google.cloud.contact_center_insights_v1.types import resources
 
