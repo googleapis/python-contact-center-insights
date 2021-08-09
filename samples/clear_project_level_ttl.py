@@ -18,6 +18,7 @@ from google.cloud.contact_center_insights_v1.types import resources
 from google.protobuf import field_mask_pb2
 
 
+# [START contactcenterinsights_clear_project_level_ttl]
 def clear_project_level_ttl(project_id: str) -> None:
     # Construct a settings resource.
     settings = resources.Settings()
@@ -32,3 +33,5 @@ def clear_project_level_ttl(project_id: str) -> None:
     insights_client = client.ContactCenterInsightsClient()
     insights_client.update_settings(settings=settings, update_mask=update_mask)
     print("Cleared TTL for all incoming conversations")
+
+# [END contactcenterinsights_clear_project_level_ttl]
