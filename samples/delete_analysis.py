@@ -22,4 +22,4 @@ def delete_analysis(name: str) -> None:
     insights_client.delete_analysis(name=name)
     print("Deleted an analysis named {}".format(name))
 
-# [START contactcenterinsights_delete_analysis]
+# [END contactcenterinsights_delete_analysis]
