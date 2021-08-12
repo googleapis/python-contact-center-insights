@@ -13,11 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# [START contactcenterinsights_get_operation]
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import client
 from google.longrunning import operations_pb2
 
 
-# [START contactcenterinsights_get_operation]
 def get_operation(project_id: str, location_id: str, operation_id: str) -> operations_pb2.Operation:
     insights_client = client.ContactCenterInsightsClient()
     operation_name = "projects/{}/locations/{}/operations/{}".format(project_id, location_id, operation_id)
