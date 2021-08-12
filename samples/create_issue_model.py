@@ -13,11 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# [START contactcenterinsights_create_issue_model]
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import async_client
 from google.cloud.contact_center_insights_v1.types import resources
 
 
-# [START contactcenterinsights_create_issue_model]
 def create_issue_model(project_id: str) -> resources.IssueModel:
     # Construct a parent resource.
     parent = "projects/{}/locations/us-central1".format(project_id)

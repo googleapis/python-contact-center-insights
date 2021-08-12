@@ -13,10 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# [START contactcenterinsights_delete_issue_model]
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import async_client
 
 
-# [START contactcenterinsights_delete_issue_model]
 def delete_issue_model(name: str) -> None:
     insights_client = async_client.ContactCenterInsightsClient()
     insights_client.delete_issue_model(name=name)
