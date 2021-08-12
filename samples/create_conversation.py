@@ -23,14 +23,10 @@ def create_conversation(project_id: str, transcript_uri: str, audio_uri: str) ->
     # Construct a parent resource.
     parent = "projects/{}/locations/us-central1".format(project_id)
 
-    # Construct a data source.
-    data_source = resources.ConversationDataSource()
-    data_source.gcs_source.transcript_uri = transcript_uri
-    data_source.gcs_source.audio_uri = audio_uri
-
     # Construct a conversation.
     conversation = resources.Conversation()
-    conversation.data_source = data_source
+    conversation.data_source.gcs_source.transcript_uri = transcript_uri
+    conversation.data_source.gcs_source.audio_uri = audio_uri
     conversation.medium = resources.Conversation.Medium.CHAT
 
     # Call the Insights client to create a conversation.
@@ -49,17 +45,13 @@ def create_conversation_with_ttl(project_id: str, transcript_uri: str, ttl_secon
     # Construct a parent resource.
     parent = "projects/{}/locations/us-central1".format(project_id)
 
-    # Construct a data source.
-    data_source = resources.ConversationDataSource()
-    data_source.gcs_source.transcript_uri = transcript_uri
-
     # Construct a TTL.
     ttl = duration_pb2.Duration()
     ttl.seconds = ttl_seconds
 
     # Construct a conversation.
     conversation = resources.Conversation()
-    conversation.data_source = data_source
+    conversation.data_source.gcs_source.transcript_uri = transcript_uri
     conversation.medium = resources.Conversation.Medium.CHAT
     conversation.ttl = ttl
 

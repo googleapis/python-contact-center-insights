@@ -25,12 +25,9 @@ def export_data_to_bigquery(project_id: str, data_filter: str, kms_key: str,
     request.parent = "projects/{}/locations/us-central1".format(project_id)
     request.filter = data_filter
     request.kms_key = kms_key
-
-    destination = contact_center_insights.ExportInsightsDataRequest.BigQueryDestination()
-    destination.project_id = bigquery_project_id
-    destination.table = bigquery_table
-    destination.dataset = bigquery_dataset
-    request.big_query_destination = destination
+    request.big_query_destination.project_id = bigquery_project_id
+    request.big_query_destination.table = bigquery_table
+    request.big_query_destination.dataset = bigquery_dataset
 
     # Call the Insights client to export data to BigQuery.
     insights_client = async_client.ContactCenterInsightsClient()
