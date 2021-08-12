@@ -15,16 +15,15 @@
 #
 import os
 
-from samples import create_conversation
+from samples import create_conversation_with_ttl
 from samples import delete_conversation
 
 
-def test_create_conversation():
+def test_create_conversation_with_ttl():
     project_id = os.getenv('PROJECT_ID', '')
     transcript_uri = os.getenv('TRANSCRIPT_URI', 'gs://cloud-samples-data/ccai/chat_sample.json')
-    audio_uri = os.getenv('AUDIO_URI', 'gs://cloud-samples-data/ccai/voice_6912.txt')
     assert project_id
 
     # Create a conversation then clean up by deleting it.
-    conversation = create_conversation.create_conversation(project_id, transcript_uri, audio_uri)
+    conversation = create_conversation_with_ttl.create_conversation_with_ttl(project_id, transcript_uri, 600)
     delete_conversation.delete_conversation(conversation.name)

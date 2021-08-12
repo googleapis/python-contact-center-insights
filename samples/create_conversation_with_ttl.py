@@ -13,20 +13,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# [START contactcenterinsights_create_conversation]
+# [START contactcenterinsights_create_conversation_with_ttl]
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import client
 from google.cloud.contact_center_insights_v1.types import resources
+from google.protobuf import duration_pb2
 
 
-def create_conversation(project_id: str, transcript_uri: str, audio_uri: str) -> resources.Conversation:
+def create_conversation_with_ttl(project_id: str, transcript_uri: str, ttl_seconds: int) -> resources.Conversation:
     # Construct a parent resource.
     parent = "projects/{}/locations/us-central1".format(project_id)
+
+    # Construct a TTL.
+    ttl = duration_pb2.Duration()
+    ttl.seconds = ttl_seconds
 
     # Construct a conversation.
     conversation = resources.Conversation()
     conversation.data_source.gcs_source.transcript_uri = transcript_uri
-    conversation.data_source.gcs_source.audio_uri = audio_uri
     conversation.medium = resources.Conversation.Medium.CHAT
+    conversation.ttl = ttl
 
     # Call the Insights client to create a conversation.
     insights_client = client.ContactCenterInsightsClient()
@@ -35,4 +40,4 @@ def create_conversation(project_id: str, transcript_uri: str, audio_uri: str) ->
     print("Created a conversation named {}".format(conversation.name))
     return conversation
 
-# [END contactcenterinsights_create_conversation]
+# [END contactcenterinsights_create_conversation_with_ttl]
