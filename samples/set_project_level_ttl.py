@@ -13,13 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# [START contactcenterinsights_set_project_level_ttl]
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import client
 from google.cloud.contact_center_insights_v1.types import resources
 from google.protobuf import duration_pb2
 from google.protobuf import field_mask_pb2
 
 
-# [START contactcenterinsights_set_project_level_ttl]
 def set_project_level_ttl(project_id: str, ttl_seconds: int) -> None:
     # Construct a settings resource.
     settings = resources.Settings()
