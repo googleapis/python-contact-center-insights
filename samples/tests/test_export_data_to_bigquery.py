@@ -20,16 +20,12 @@ from samples import export_data_to_bigquery
 
 def test_export_data_to_bigquery():
     project_id = os.getenv('PROJECT_ID', '')
-    data_filter = os.getenv('FILTER', '')
-    kms_key = os.getenv('KMS_KEY', '')
     bigquery_project_id = os.getenv('BIGQUERY_PROJECT_ID', '')
     bigquery_dataset = os.getenv('BIGQUERY_DATASET', '')
     bigquery_table = os.getenv('BIGQUERY_TABLE', '')
-
     assert project_id
     assert bigquery_project_id
     assert bigquery_dataset
     assert bigquery_table
 
-    export_data_to_bigquery.export_data_to_bigquery(project_id, data_filter, kms_key,
-                                                    bigquery_project_id, bigquery_dataset, bigquery_table)
+    export_data_to_bigquery.export_data_to_bigquery(project_id, bigquery_project_id, bigquery_dataset, bigquery_table)

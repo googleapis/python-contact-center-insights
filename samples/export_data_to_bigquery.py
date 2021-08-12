@@ -18,13 +18,11 @@ from google.cloud.contact_center_insights_v1.types import contact_center_insight
 
 
 # [START contactcenterinsights_export_data_to_bigquery]
-def export_data_to_bigquery(project_id: str, data_filter: str, kms_key: str,
-                            bigquery_project_id: str, bigquery_dataset: str, bigquery_table: str) -> None:
+def export_data_to_bigquery(project_id: str, bigquery_project_id: str, bigquery_dataset: str,
+                            bigquery_table: str) -> None:
     # Construct an export request.
     request = contact_center_insights.ExportInsightsDataRequest()
     request.parent = "projects/{}/locations/us-central1".format(project_id)
-    request.filter = data_filter
-    request.kms_key = kms_key
     request.big_query_destination.project_id = bigquery_project_id
     request.big_query_destination.table = bigquery_table
     request.big_query_destination.dataset = bigquery_dataset
