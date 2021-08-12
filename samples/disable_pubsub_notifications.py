@@ -13,12 +13,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# [START contactcenterinsights_disable_pubsub_notifications]
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import client
 from google.cloud.contact_center_insights_v1.types import resources
 from google.protobuf import field_mask_pb2
 
 
-# [START contactcenterinsights_disable_pubsub_notifications]
 def disable_pubsub_notifications(project_id: str) -> None:
     # Construct a settings resource.
     settings = resources.Settings()
