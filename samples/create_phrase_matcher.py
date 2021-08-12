@@ -13,11 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# [START contactcenterinsights_create_phrase_matcher_phone_or_cellphone]
 from google.cloud.contact_center_insights_v1.types import resources
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import client
 
 
-# [START contactcenterinsights_create_phrase_matcher_phone_or_cellphone]
 def create_phrase_matcher_phone_or_cellphone(project_id: str) -> resources.PhraseMatcher:
     # Construct a parent resource.
     parent = "projects/{}/locations/us-central1".format(project_id)
