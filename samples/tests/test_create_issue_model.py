@@ -24,5 +24,5 @@ def test_create_issue_model():
     assert project_id
 
     # Create an issue model then clean up by deleting it,
-    issue_model = create_issue_model.create_issue_model(project_id, "my-model")
+    issue_model = create_issue_model.create_issue_model(project_id)
     delete_issue_model.delete_issue_model(issue_model.name)

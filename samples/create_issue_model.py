@@ -18,13 +18,13 @@ from google.cloud.contact_center_insights_v1.types import resources
 
 
 # [START contactcenterinsights_create_issue_model]
-def create_issue_model(project_id: str, display_name: str) -> resources.IssueModel:
+def create_issue_model(project_id: str) -> resources.IssueModel:
     # Construct a parent resource.
     parent = "projects/{}/locations/us-central1".format(project_id)
 
     # Construct an issue model.
     issue_model = resources.IssueModel()
-    issue_model.display_name = display_name
+    issue_model.display_name = "my-model"
 
     input_data_config = resources.IssueModel.InputDataConfig()
     input_data_config.medium = resources.Conversation.Medium.CHAT
