@@ -13,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# [START contactcenterinsights_clear_project_level_ttl]
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import client
 from google.cloud.contact_center_insights_v1.types import resources
 from google.protobuf import field_mask_pb2
@@ -33,5 +32,3 @@ def clear_project_level_ttl(project_id: str) -> None:
     insights_client = client.ContactCenterInsightsClient()
     insights_client.update_settings(settings=settings, update_mask=update_mask)
     print("Cleared TTL for all incoming conversations")
-
-# [END contactcenterinsights_clear_project_level_ttl]
