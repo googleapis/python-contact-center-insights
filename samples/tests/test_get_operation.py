@@ -20,10 +20,11 @@ from samples import get_operation
 
 def test_get_operation():
     project_id = os.getenv('PROJECT_ID', '')
-    location = os.getenv('LOCATION', '')
+    location_id = os.getenv('LOCATION_ID', '')
     operation_id = os.getenv('OPERATION_ID', '')
     assert project_id
-    assert location
+    assert location_id
     assert operation_id
 
-    get_operation.get_operation(project_id, location, operation_id)
+    operation = get_operation.get_operation(project_id, location_id, operation_id)
+    assert operation.name == f"projects/{project_id}/locations/{location_id}/operations/{operation_id}"
