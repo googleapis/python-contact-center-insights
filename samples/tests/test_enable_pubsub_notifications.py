@@ -21,8 +21,8 @@ from samples import disable_pubsub_notifications
 
 def test_enable_pubsub_notifications():
     project_id = os.getenv('PROJECT_ID', '')
-    topic_create_conversation = os.getenv('TOPIC_CREATE_CONVERSATION', '')
-    topic_create_analysis = os.getenv('TOPIC_CREATE_ANALYSIS', '')
+    topic_create_conversation = os.getenv('TOPIC_CREATE_CONVERSATION', 'foo')
+    topic_create_analysis = os.getenv('TOPIC_CREATE_ANALYSIS', 'bar')
     assert project_id
     assert topic_create_conversation
     assert topic_create_analysis

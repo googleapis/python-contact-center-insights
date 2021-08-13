@@ -23,7 +23,7 @@ def enable_pubsub_notifications(project_id: str, topic_create_conversation: str,
                                 topic_create_analysis: str) -> None:
     # Construct a settings resource.
     settings = resources.Settings()
-    settings.name = f"projects/{project_id}/locations/us-central1/settings"
+    settings.name = client.ContactCenterInsightsClient.settings_path(project_id, 'us-central1')
     notification_settings = {"create-conversation": topic_create_conversation,
                              "create-analysis": topic_create_analysis}
     for key, value in notification_settings.items():
