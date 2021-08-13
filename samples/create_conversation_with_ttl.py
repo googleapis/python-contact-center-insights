@@ -19,18 +19,19 @@ from google.cloud.contact_center_insights_v1.types import resources
 from google.protobuf import duration_pb2
 
 
-def create_conversation_with_ttl(project_id: str, transcript_uri: str, ttl_seconds: int) -> resources.Conversation:
+def create_conversation_with_ttl(project_id: str, transcript_uri: str, audio_uri: str) -> resources.Conversation:
     # Construct a parent resource.
     parent = client.ContactCenterInsightsClient.common_location_path(project_id, "us-central1")
-
-    # Construct a TTL.
-    ttl = duration_pb2.Duration()
-    ttl.seconds = ttl_seconds
 
     # Construct a conversation.
     conversation = resources.Conversation()
     conversation.data_source.gcs_source.transcript_uri = transcript_uri
+    conversation.data_source.gcs_source.audio_uri = audio_uri
     conversation.medium = resources.Conversation.Medium.CHAT
+
+    # Construct a TTL.
+    ttl = duration_pb2.Duration()
+    ttl.seconds = 600
     conversation.ttl = ttl
 
     # Call the Insights client to create a conversation.
