@@ -20,6 +20,6 @@ from google.cloud.contact_center_insights_v1.services.contact_center_insights im
 def delete_issue_model(name: str) -> None:
     insights_client = async_client.ContactCenterInsightsClient()
     insights_client.delete_issue_model(name=name)
-    print("Deleted an issue model named {}".format(name))
+    print(f"Deleted an issue model named {name}")
 
 # [END contactcenterinsights_delete_issue_model]

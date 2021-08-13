@@ -20,7 +20,7 @@ from google.cloud.contact_center_insights_v1.types import resources
 
 def create_issue_model(project_id: str) -> resources.IssueModel:
     # Construct a parent resource.
-    parent = "projects/{}/locations/us-central1".format(project_id)
+    parent = f"projects/{project_id}/locations/us-central1"
 
     # Construct an issue model.
     issue_model = resources.IssueModel()
@@ -36,7 +36,7 @@ def create_issue_model(project_id: str) -> resources.IssueModel:
 
     print("Waiting for the operation to complete...")
     issue_model = issue_model_operation.result(timeout=1200)
-    print("Created an issue model named {}".format(issue_model.name))
+    print(f"Created an issue model named {issue_model.name}")
     return issue_model
 
 # [END contactcenterinsights_create_issue_model]
