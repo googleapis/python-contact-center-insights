@@ -20,7 +20,7 @@ from google.cloud.contact_center_insights_v1.services.contact_center_insights im
 
 def create_phrase_matcher_phone_or_cellphone(project_id: str) -> resources.PhraseMatcher:
     # Construct a parent resource.
-    parent = f"projects/{project_id}/locations/us-central1"
+    parent = client.ContactCenterInsightsClient.common_location_path(project_id, "us-central1")
 
     # Construct a phrase matcher that matches any of its rule groups.
     phrase_matcher = resources.PhraseMatcher()
@@ -52,7 +52,7 @@ def create_phrase_matcher_phone_or_cellphone(project_id: str) -> resources.Phras
 # [START contactcenterinsights_create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery]
 def create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery(project_id: str) -> resources.PhraseMatcher:
     # Construct a parent resource.
-    parent = f"projects/{project_id}/locations/us-central1"
+    parent = client.ContactCenterInsightsClient.common_location_path(project_id, "us-central1")
 
     # Construct a phrase matcher that matches all of its rule groups.
     phrase_matcher = resources.PhraseMatcher()
