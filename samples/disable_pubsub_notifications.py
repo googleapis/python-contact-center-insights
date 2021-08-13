@@ -13,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# [START contactcenterinsights_disable_pubsub_notifications]
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import client
 from google.cloud.contact_center_insights_v1.types import resources
 from google.protobuf import field_mask_pb2
@@ -33,5 +32,3 @@ def disable_pubsub_notifications(project_id: str) -> None:
     insights_client = client.ContactCenterInsightsClient()
     insights_client.update_settings(settings=settings, update_mask=update_mask)
     print("Disabled Pub/Sub notifications")
-
-# [END contactcenterinsights_disable_pubsub_notifications]
