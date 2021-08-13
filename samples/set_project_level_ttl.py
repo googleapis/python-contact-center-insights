@@ -23,7 +23,7 @@ from google.protobuf import field_mask_pb2
 def set_project_level_ttl(project_id: str, ttl_seconds: int) -> None:
     # Construct a settings resource.
     settings = resources.Settings()
-    settings.name = "projects/{}/locations/us-central1/settings".format(project_id)
+    settings.name = f"projects/{project_id}/locations/us-central1/settings"
 
     conversation_ttl = duration_pb2.Duration()
     conversation_ttl.seconds = ttl_seconds
@@ -36,6 +36,6 @@ def set_project_level_ttl(project_id: str, ttl_seconds: int) -> None:
     # Call the Insights client to set a project-level TTL.
     insights_client = client.ContactCenterInsightsClient()
     insights_client.update_settings(settings=settings, update_mask=update_mask)
-    print("Set TTL for all incoming conversations to {} seconds".format(ttl_seconds))
+    print(f"Set TTL for all incoming conversations to {ttl_seconds} seconds")
 
 # [END contactcenterinsights_set_project_level_ttl]

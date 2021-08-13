@@ -22,7 +22,7 @@ from google.protobuf import field_mask_pb2
 def clear_project_level_ttl(project_id: str) -> None:
     # Construct a settings resource.
     settings = resources.Settings()
-    settings.name = "projects/{}/locations/us-central1/settings".format(project_id)
+    settings.name = f"projects/{project_id}/locations/us-central1/settings"
     settings.conversation_ttl = None
 
     # Construct an update mask.
