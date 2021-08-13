@@ -20,7 +20,7 @@ from google.cloud.contact_center_insights_v1.types import resources
 
 def create_conversation(project_id: str, transcript_uri: str, audio_uri: str) -> resources.Conversation:
     # Construct a parent resource.
-    parent = "projects/{}/locations/us-central1".format(project_id)
+    parent = f"projects/{project_id}/locations/us-central1"
 
     # Construct a conversation.
     conversation = resources.Conversation()
@@ -32,7 +32,7 @@ def create_conversation(project_id: str, transcript_uri: str, audio_uri: str) ->
     insights_client = client.ContactCenterInsightsClient()
     conversation = insights_client.create_conversation(parent=parent, conversation=conversation)
 
-    print("Created a conversation named {}".format(conversation.name))
+    print(f"Created a conversation named {conversation.name}")
     return conversation
 
 # [END contactcenterinsights_create_conversation]

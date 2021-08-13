@@ -22,7 +22,7 @@ def export_data_to_bigquery(project_id: str, bigquery_project_id: str, bigquery_
                             bigquery_table: str) -> None:
     # Construct an export request.
     request = contact_center_insights.ExportInsightsDataRequest()
-    request.parent = "projects/{}/locations/us-central1".format(project_id)
+    request.parent = f"projects/{project_id}/locations/us-central1"
     request.big_query_destination.project_id = bigquery_project_id
     request.big_query_destination.table = bigquery_table
     request.big_query_destination.dataset = bigquery_dataset
@@ -33,6 +33,6 @@ def export_data_to_bigquery(project_id: str, bigquery_project_id: str, bigquery_
 
     print("Waiting for the operation to complete...")
     export_operation.result(timeout=7200)
-    print("Exported data to the BigQuery named {}".format(bigquery_table))
+    print(f"Exported data to the BigQuery named {bigquery_table}")
 
 # [END contactcenterinsights_export_data_to_bigquery]

@@ -28,7 +28,7 @@ def create_analysis(conversation_name: str) -> resources.Analysis:
 
     print("Waiting for the operation to complete...")
     analysis = analysis_operation.result(timeout=1200)
-    print("Created an analysis named {}".format(analysis.name))
+    print(f"Created an analysis named {analysis.name}")
     return analysis
 
 # [END contactcenterinsights_create_analysis]

@@ -21,7 +21,7 @@ from google.protobuf import duration_pb2
 
 def create_conversation_with_ttl(project_id: str, transcript_uri: str, ttl_seconds: int) -> resources.Conversation:
     # Construct a parent resource.
-    parent = "projects/{}/locations/us-central1".format(project_id)
+    parent = f"projects/{project_id}/locations/us-central1"
 
     # Construct a TTL.
     ttl = duration_pb2.Duration()
@@ -37,7 +37,7 @@ def create_conversation_with_ttl(project_id: str, transcript_uri: str, ttl_secon
     insights_client = client.ContactCenterInsightsClient()
     conversation = insights_client.create_conversation(parent=parent, conversation=conversation)
 
-    print("Created a conversation named {}".format(conversation.name))
+    print(f"Created a conversation named {conversation.name}")
     return conversation
 
 # [END contactcenterinsights_create_conversation_with_ttl]

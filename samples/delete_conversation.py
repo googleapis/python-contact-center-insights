@@ -20,6 +20,6 @@ from google.cloud.contact_center_insights_v1.services.contact_center_insights im
 def delete_conversation(name: str) -> None:
     insights_client = client.ContactCenterInsightsClient()
     insights_client.delete_conversation(name=name)
-    print("Deleted a conversation named {}".format(name))
+    print(f"Deleted a conversation named {name}")
 
 # [END contactcenterinsights_delete_conversation]
