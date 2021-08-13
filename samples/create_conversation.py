@@ -20,7 +20,7 @@ from google.cloud.contact_center_insights_v1.types import resources
 
 def create_conversation(project_id: str, transcript_uri: str, audio_uri: str) -> resources.Conversation:
     # Construct a parent resource.
-    parent = f"projects/{project_id}/locations/us-central1"
+    parent = client.ContactCenterInsightsClient.common_location_path(project_id, "us-central1")
 
     # Construct a conversation.
     conversation = resources.Conversation()

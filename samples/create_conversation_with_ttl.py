@@ -21,7 +21,7 @@ from google.protobuf import duration_pb2
 
 def create_conversation_with_ttl(project_id: str, transcript_uri: str, ttl_seconds: int) -> resources.Conversation:
     # Construct a parent resource.
-    parent = f"projects/{project_id}/locations/us-central1"
+    parent = client.ContactCenterInsightsClient.common_location_path(project_id, "us-central1")
 
     # Construct a TTL.
     ttl = duration_pb2.Duration()
