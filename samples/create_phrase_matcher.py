@@ -20,7 +20,7 @@ from google.cloud.contact_center_insights_v1.services.contact_center_insights im
 
 def create_phrase_matcher_phone_or_cellphone(project_id: str) -> resources.PhraseMatcher:
     # Construct a parent resource.
-    parent = "projects/{}/locations/us-central1".format(project_id)
+    parent = f"projects/{project_id}/locations/us-central1"
 
     # Construct a phrase matcher that matches any of its rule groups.
     phrase_matcher = resources.PhraseMatcher()
@@ -43,7 +43,7 @@ def create_phrase_matcher_phone_or_cellphone(project_id: str) -> resources.Phras
     insights_client = client.ContactCenterInsightsClient()
     phrase_matcher = insights_client.create_phrase_matcher(parent=parent, phrase_matcher=phrase_matcher)
 
-    print("Created a phrase matcher named {}".format(phrase_matcher.name))
+    print(f"Created a phrase matcher named {phrase_matcher.name}")
     return phrase_matcher
 
 
@@ -52,7 +52,7 @@ def create_phrase_matcher_phone_or_cellphone(project_id: str) -> resources.Phras
 # [START contactcenterinsights_create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery]
 def create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery(project_id: str) -> resources.PhraseMatcher:
     # Construct a parent resource.
-    parent = "projects/{}/locations/us-central1".format(project_id)
+    parent = f"projects/{project_id}/locations/us-central1"
 
     # Construct a phrase matcher that matches all of its rule groups.
     phrase_matcher = resources.PhraseMatcher()
@@ -87,7 +87,7 @@ def create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery(project_id
     insights_client = client.ContactCenterInsightsClient()
     phrase_matcher = insights_client.create_phrase_matcher(parent=parent, phrase_matcher=phrase_matcher)
 
-    print("Created a phrase matcher named {}".format(phrase_matcher.name))
+    print(f"Created a phrase matcher named {phrase_matcher.name}")
     return phrase_matcher
 
 # [END contactcenterinsights_create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery]
