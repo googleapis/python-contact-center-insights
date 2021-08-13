@@ -20,7 +20,7 @@ from google.longrunning import operations_pb2
 
 def get_operation(project_id: str, location_id: str, operation_id: str) -> operations_pb2.Operation:
     insights_client = client.ContactCenterInsightsClient()
-    operation_name = "projects/{}/locations/{}/operations/{}".format(project_id, location_id, operation_id)
+    operation_name = f"projects/{project_id}/locations/{location_id}/operations/{operation_id}"
     return insights_client.transport.operations_client.get_operation(operation_name)
 
 # [END contactcenterinsights_get_operation]
