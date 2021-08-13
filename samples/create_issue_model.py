@@ -20,7 +20,7 @@ from google.cloud.contact_center_insights_v1.types import resources
 
 def create_issue_model(project_id: str) -> resources.IssueModel:
     # Construct a parent resource.
-    parent = f"projects/{project_id}/locations/us-central1"
+    parent = async_client.ContactCenterInsightsClient.common_location_path(project_id, "us-central1")
 
     # Construct an issue model.
     issue_model = resources.IssueModel()
