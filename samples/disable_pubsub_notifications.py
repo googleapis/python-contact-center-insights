@@ -22,7 +22,7 @@ from google.protobuf import field_mask_pb2
 def disable_pubsub_notifications(project_id: str) -> None:
     # Construct a settings resource.
     settings = resources.Settings()
-    settings.name = "projects/{}/locations/us-central1/settings".format(project_id)
+    settings.name = f"projects/{project_id}/locations/us-central1/settings"
     settings.pubsub_notification_settings = {}
 
     # Construct an update mask.
