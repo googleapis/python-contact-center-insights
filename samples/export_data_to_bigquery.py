@@ -14,6 +14,7 @@
 # limitations under the License.
 #
 # [START contactcenterinsights_export_data_to_bigquery]
+from google.api_core.exceptions import GoogleAPICallError
 from google.cloud.contact_center_insights_v1.services.contact_center_insights import async_client
 from google.cloud.contact_center_insights_v1.types import contact_center_insights
 
@@ -32,7 +33,11 @@ def export_data_to_bigquery(project_id: str, bigquery_project_id: str, bigquery_
     export_operation = insights_client.export_insights_data(request=request)
 
     print("Waiting for the operation to complete...")
-    export_operation.result(timeout=7200)
+    try:
+        export_operation.result(timeout=600000)
+    except GoogleAPICallError:
+        # Ignore this error because the export operation doesn't return a response when it completes.
+        pass
     print(f"Exported data to the BigQuery named {bigquery_table}")
 
 # [END contactcenterinsights_export_data_to_bigquery]
