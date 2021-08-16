@@ -35,9 +35,13 @@ def export_data_to_bigquery(project_id: str, bigquery_project_id: str, bigquery_
     print("Waiting for the operation to complete...")
     try:
         export_operation.result(timeout=600000)
-    except GoogleAPICallError:
-        # Ignore this error because the export operation doesn't return a response when it completes.
-        pass
+    except GoogleAPICallError as e:
+        if "Long-running operation had neither response nor error set" in str(e):
+            # Ignore because the export operation doesn't return a response when it completes.
+            pass
+        else:
+            raise
+
     print(f"Exported data to the BigQuery named {bigquery_table}")
 
 # [END contactcenterinsights_export_data_to_bigquery]
