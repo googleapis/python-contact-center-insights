@@ -14,27 +14,21 @@
 # limitations under the License.
 #
 # [START contactcenterinsights_enable_pubsub_notifications]
-from google.cloud.contact_center_insights_v1.services.contact_center_insights import client
-from google.cloud.contact_center_insights_v1.types import resources
-from google.protobuf import field_mask_pb2
+from google.api_core import protobuf_helpers
+from google.cloud import contact_center_insights_v1
 
 
-def enable_pubsub_notifications(project_id: str, topic_create_conversation: str,
-                                topic_create_analysis: str) -> None:
+def enable_pubsub_notifications(project_id: str, topic_create_conversation: str, topic_create_analysis: str) -> None:
     # Construct a settings resource.
-    settings = resources.Settings()
-    settings.name = client.ContactCenterInsightsClient.settings_path(project_id, 'us-central1')
-    notification_settings = {"create-conversation": topic_create_conversation,
-                             "create-analysis": topic_create_analysis}
-    for key, value in notification_settings.items():
-        settings.pubsub_notification_settings[key] = value
+    settings = contact_center_insights_v1.Settings()
+    settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(project_id, 'us-central1')
+    settings.pubsub_notification_settings = {"create-conversation": topic_create_conversation,
+                                             "create-analysis": topic_create_analysis}
 
-    # Construct an update mask.
-    update_mask = field_mask_pb2.FieldMask()
-    update_mask.paths.append("pubsub_notification_settings")
+    update_mask = protobuf_helpers.field_mask(None, type(settings).pb(settings))
 
     # Call the Insights client to enable Pub/Sub notifications.
-    insights_client = client.ContactCenterInsightsClient()
+    insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
     insights_client.update_settings(settings=settings, update_mask=update_mask)
     print("Enabled Pub/Sub notifications")
 
