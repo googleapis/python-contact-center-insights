@@ -21,7 +21,7 @@ from google.cloud import contact_center_insights_v1
 def enable_pubsub_notifications(project_id: str, topic_create_conversation: str, topic_create_analysis: str) -> None:
     # Construct a settings resource.
     settings = contact_center_insights_v1.Settings()
-    settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(project_id, 'us-central1')
+    settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(project_id, "us-central1")
     settings.pubsub_notification_settings = {"create-conversation": topic_create_conversation,
                                              "create-analysis": topic_create_analysis}
 

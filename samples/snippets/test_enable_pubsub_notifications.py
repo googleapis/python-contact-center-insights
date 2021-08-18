@@ -21,9 +21,9 @@ from google.cloud import pubsub_v1
 from google.protobuf import field_mask_pb2
 import enable_pubsub_notifications
 
-UUID = uuid.uuid4().hex
-CONVERSATION_TOPIC_ID = 'create-conversation-' + UUID
-ANALYSIS_TOPIC_ID = 'create-analysis-' + UUID
+UUID = uuid.uuid4().hex[:8]
+CONVERSATION_TOPIC_ID = "create-conversation-" + UUID
+ANALYSIS_TOPIC_ID = "create-analysis-" + UUID
 
 
 def test_enable_pubsub_notifications():
@@ -41,7 +41,7 @@ def test_enable_pubsub_notifications():
 
     # Disable Pub/Sub notifications.
     settings = contact_center_insights_v1.Settings()
-    settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(project_id, 'us-central1')
+    settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(project_id, "us-central1")
     settings.pubsub_notification_settings = {}
     update_mask = field_mask_pb2.FieldMask()
     update_mask.paths.append("pubsub_notification_settings")
