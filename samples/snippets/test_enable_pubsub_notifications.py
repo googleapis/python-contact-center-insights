@@ -26,7 +26,7 @@ CONVERSATION_TOPIC_ID = "create-conversation-" + UUID
 ANALYSIS_TOPIC_ID = "create-analysis-" + UUID
 
 
-def test_enable_pubsub_notifications():
+def test_enable_pubsub_notifications(capsys):
     _, project_id = google.auth.default()
 
     # Create Pub/Sub topics.
@@ -38,6 +38,8 @@ def test_enable_pubsub_notifications():
 
     # Enable Pub/Sub notifications.
     enable_pubsub_notifications.enable_pubsub_notifications(project_id, conversation_topic.name, analysis_topic.name)
+    out, err = capsys.readouterr()
+    assert "Enabled Pub/Sub notifications" in out
 
     # Disable Pub/Sub notifications.
     settings = contact_center_insights_v1.Settings()
