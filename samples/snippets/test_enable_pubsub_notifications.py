@@ -13,13 +13,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import google.auth
 import uuid
+
+import google.auth
+
+import enable_pubsub_notifications
 
 from google.cloud import contact_center_insights_v1
 from google.cloud import pubsub_v1
 from google.protobuf import field_mask_pb2
-import enable_pubsub_notifications
 
 UUID = uuid.uuid4().hex[:8]
 CONVERSATION_TOPIC_ID = "create-conversation-" + UUID
