@@ -13,11 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import google.auth
 import uuid
 
-from google.cloud import bigquery
+import google.auth
+
 import export_data_to_bigquery
+
+from google.cloud import bigquery
 
 GCLOUD_TESTS_PREFIX = "python_samples_tests"
 
