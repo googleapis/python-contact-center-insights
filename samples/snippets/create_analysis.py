@@ -24,7 +24,7 @@ def create_analysis(conversation_name: str) -> contact_center_insights_v1.Analys
     # Call the Insights client to create an analysis.
     insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
     analysis_operation = insights_client.create_analysis(parent=conversation_name, analysis=analysis)
-    analysis = analysis_operation.result(timeout=1200)
+    analysis = analysis_operation.result(timeout=600000)
     print(f"Created {analysis.name}")
     return analysis
 
