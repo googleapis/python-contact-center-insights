@@ -17,9 +17,9 @@ import uuid
 
 import google.auth
 
-import export_data_to_bigquery
-
 from google.cloud import bigquery
+
+import export_data_to_bigquery
 
 GCLOUD_TESTS_PREFIX = "python_samples_tests"
 
