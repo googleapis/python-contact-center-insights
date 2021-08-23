@@ -14,28 +14,23 @@
 # limitations under the License.
 #
 # [START contactcenterinsights_create_issue_model]
-from google.cloud.contact_center_insights_v1.services.contact_center_insights import async_client
-from google.cloud.contact_center_insights_v1.types import resources
+from google.cloud import contact_center_insights_v1
 
 
-def create_issue_model(project_id: str) -> resources.IssueModel:
+def create_issue_model(project_id: str) -> contact_center_insights_v1.IssueModel:
     # Construct a parent resource.
-    parent = async_client.ContactCenterInsightsClient.common_location_path(project_id, "us-central1")
+    parent = contact_center_insights_v1.ContactCenterInsightsClient.common_location_path(project_id, "us-central1")
 
     # Construct an issue model.
-    issue_model = resources.IssueModel()
+    issue_model = contact_center_insights_v1.IssueModel()
     issue_model.display_name = "my-model"
-
-    input_data_config = resources.IssueModel.InputDataConfig()
-    input_data_config.medium = resources.Conversation.Medium.CHAT
-    issue_model.input_data_config = input_data_config
+    issue_model.input_data_config.medium = contact_center_insights_v1.Conversation.Medium.CHAT
 
     # Call the Insights client to create an issue model.
-    insights_client = async_client.ContactCenterInsightsClient()
+    insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
     issue_model_operation = insights_client.create_issue_model(parent=parent, issue_model=issue_model)
 
-    print("Waiting for the operation to complete...")
-    issue_model = issue_model_operation.result(timeout=1200)
+    issue_model = issue_model_operation.result(timeout=600000)
     print(f"Created an issue model named {issue_model.name}")
     return issue_model
 
