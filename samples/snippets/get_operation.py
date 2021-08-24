@@ -13,18 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import os
+# [START contactcenterinsights_get_operation]
+from google.cloud import contact_center_insights_v1
+from google.longrunning import operations_pb2
 
-from samples import get_operation
 
+def get_operation(project_id: str, location_id: str, operation_id: str) -> operations_pb2.Operation:
+    insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
+    operation_name = f"projects/{project_id}/locations/{location_id}/operations/{operation_id}"
+    return insights_client.transport.operations_client.get_operation(operation_name)
 
-def test_get_operation():
-    project_id = os.getenv('PROJECT_ID', '')
-    location_id = os.getenv('LOCATION_ID', '')
-    operation_id = os.getenv('OPERATION_ID', '')
-    assert project_id
-    assert location_id
-    assert operation_id
-
-    operation = get_operation.get_operation(project_id, location_id, operation_id)
-    assert operation.name == f"projects/{project_id}/locations/{location_id}/operations/{operation_id}"
+# [END contactcenterinsights_get_operation]
