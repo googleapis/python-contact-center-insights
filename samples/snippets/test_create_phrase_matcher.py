@@ -13,25 +13,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import os
+import google.auth
 
-from samples import create_phrase_matcher
-from samples import delete_phrase_matcher
+from google.cloud import contact_center_insights_v1
+
+import create_phrase_matcher
 
 
-def test_create_phrase_matcher_phone_or_cellphone():
-    project_id = os.getenv('PROJECT_ID', '')
-    assert project_id
+def test_create_phrase_matcher_phone_or_cellphone(capsys):
+    _, project_id = google.auth.default()
 
-    # Create a phrase matcher then clean up by deleting it.
+    # Create a phrase matcher.
     phrase_matcher = create_phrase_matcher.create_phrase_matcher_phone_or_cellphone(project_id)
-    delete_phrase_matcher.delete_phrase_matcher(phrase_matcher.name)
+    out, err = capsys.readouterr()
+    assert f"Created a phrase matcher named {phrase_matcher.name}" in out
+
+    # Delete the phrase matcher.
+    insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
+    insights_client.delete_phrase_matcher(name=phrase_matcher.name)
 
 
 def test_create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery(capsys):
-    project_id = os.getenv('PROJECT_ID', '')
-    assert project_id
+    _, project_id = google.auth.default()
 
-    # Create a phrase matcher then clean up by deleting it.
+    # Create a phrase matcher.
     phrase_matcher = create_phrase_matcher.create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery(project_id)
-    delete_phrase_matcher.delete_phrase_matcher(phrase_matcher.name)
+    out, err = capsys.readouterr()
+    assert f"Created a phrase matcher named {phrase_matcher.name}" in out
+
+    # Delete the phrase matcher.
+    insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
+    insights_client.delete_phrase_matcher(name=phrase_matcher.name)
