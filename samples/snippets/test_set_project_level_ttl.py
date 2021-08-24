@@ -13,22 +13,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from google.cloud.contact_center_insights_v1.services.contact_center_insights import client
-from google.cloud.contact_center_insights_v1.types import resources
+import google.auth
+
+from google.cloud import contact_center_insights_v1
 from google.protobuf import field_mask_pb2
 
+import set_project_level_ttl
 
-def clear_project_level_ttl(project_id: str) -> None:
-    # Construct a settings resource.
-    settings = resources.Settings()
-    settings.name = client.ContactCenterInsightsClient.settings_path(project_id, "us-central1")
+
+def test_set_project_level_ttl(capsys):
+    _, project_id = google.auth.default()
+
+    # Set a project-level TTL.
+    set_project_level_ttl.set_project_level_ttl(project_id)
+    out, err = capsys.readouterr()
+    assert "Set TTL for all incoming conversations to 60 seconds" in out
+
+    # Clear the project-level TTL.
+    settings = contact_center_insights_v1.Settings()
+    settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(project_id, "us-central1")
     settings.conversation_ttl = None
-
-    # Construct an update mask.
     update_mask = field_mask_pb2.FieldMask()
     update_mask.paths.append("conversation_ttl")
 
-    # Call the Insights client to clear the project-level TTL.
-    insights_client = client.ContactCenterInsightsClient()
+    insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
     insights_client.update_settings(settings=settings, update_mask=update_mask)
-    print("Cleared TTL for all incoming conversations")

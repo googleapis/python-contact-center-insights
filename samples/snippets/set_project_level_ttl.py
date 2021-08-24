@@ -14,28 +14,25 @@
 # limitations under the License.
 #
 # [START contactcenterinsights_set_project_level_ttl]
-from google.cloud.contact_center_insights_v1.services.contact_center_insights import client
-from google.cloud.contact_center_insights_v1.types import resources
+from google.api_core import protobuf_helpers
+from google.cloud import contact_center_insights_v1
 from google.protobuf import duration_pb2
-from google.protobuf import field_mask_pb2
 
 
-def set_project_level_ttl(project_id: str, ttl_seconds: int) -> None:
+def set_project_level_ttl(project_id: str) -> None:
     # Construct a settings resource.
-    settings = resources.Settings()
-    settings.name = client.ContactCenterInsightsClient.settings_path(project_id, "us-central1")
+    settings = contact_center_insights_v1.Settings()
+    settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(project_id, "us-central1")
 
     conversation_ttl = duration_pb2.Duration()
-    conversation_ttl.seconds = ttl_seconds
+    conversation_ttl.seconds = 60
     settings.conversation_ttl = conversation_ttl
 
-    # Construct an update mask.
-    update_mask = field_mask_pb2.FieldMask()
-    update_mask.paths.append("conversation_ttl")
+    update_mask = protobuf_helpers.field_mask(None, type(settings).pb(settings))
 
     # Call the Insights client to set a project-level TTL.
-    insights_client = client.ContactCenterInsightsClient()
+    insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
     insights_client.update_settings(settings=settings, update_mask=update_mask)
-    print(f"Set TTL for all incoming conversations to {ttl_seconds} seconds")
+    print("Set TTL for all incoming conversations to 60 seconds")
 
 # [END contactcenterinsights_set_project_level_ttl]
