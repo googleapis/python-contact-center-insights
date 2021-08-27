@@ -16,17 +16,29 @@ import google.auth
 
 from google.cloud import contact_center_insights_v1
 
+import pytest
+
 import create_conversation_with_ttl
 
 
-def test_create_conversation_with_ttl(capsys):
+@pytest.fixture
+def project_id():
     _, project_id = google.auth.default()
+    return project_id
 
-    # Create a conversation.
+
+@pytest.fixture
+def conversation_resource(project_id):
+    # Create a conversation
     conversation = create_conversation_with_ttl.create_conversation_with_ttl(project_id)
-    out, err = capsys.readouterr()
-    assert "Created {}".format(conversation.name) in out
+    yield conversation
 
     # Delete the conversation.
     insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
     insights_client.delete_conversation(name=conversation.name)
+
+
+def test_create_conversation_with_ttl(capsys, conversation_resource):
+    conversation = conversation_resource
+    out, err = capsys.readouterr()
+    assert "Created {}".format(conversation.name) in out

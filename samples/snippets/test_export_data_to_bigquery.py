@@ -18,37 +18,50 @@ import google.auth
 
 from google.cloud import bigquery
 
+import pytest
+
 import export_data_to_bigquery
 
 GCLOUD_TESTS_PREFIX = "python_samples_tests"
 
 
-def generate_uuid():
+@pytest.fixture
+def project_id():
+    _, project_id = google.auth.default()
+    return project_id
+
+
+@pytest.fixture
+def unique_id():
     uuid_hex = uuid.uuid4().hex[:8]
     return f"{GCLOUD_TESTS_PREFIX}_{uuid_hex}"
 
 
-def test_export_data_to_bigquery(capsys):
-    _, project_id = google.auth.default()
-    dataset_id = generate_uuid()
-    table_id = generate_uuid()
-
-    # Create a BigQuery dataset and table.
+@pytest.fixture
+def bigquery_resources(project_id, unique_id):
+    # Create a BigQuery dataset.
     bigquery_client = bigquery.Client()
+    dataset_id = unique_id
+    table_id = unique_id
 
     dataset = bigquery.Dataset(f"{project_id}.{dataset_id}")
     dataset.location = "US"
     bigquery_client.create_dataset(dataset, timeout=30)
 
+    # Create a BigQuery table under the created dataset.
     table = bigquery.Table(f"{project_id}.{dataset_id}.{table_id}")
     bigquery_client.create_table(table)
 
-    # Export data to the BigQuery table.
+    yield dataset_id, table_id
+
+    # Delete the BigQuery dataset.
+    bigquery_client.delete_dataset(dataset_id, delete_contents=True)
+
+
+def test_export_data_to_bigquery(capsys, project_id, bigquery_resources):
+    dataset_id, table_id = bigquery_resources
     export_data_to_bigquery.export_data_to_bigquery(
         project_id, project_id, dataset_id, table_id
     )
     out, err = capsys.readouterr()
     assert "Exported data to BigQuery" in out
-
-    # Delete the BigQuery dataset and table.
-    bigquery_client.delete_dataset(dataset_id, delete_contents=True)

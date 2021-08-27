@@ -31,6 +31,7 @@ def export_data_to_bigquery(
     request.big_query_destination.project_id = bigquery_project_id
     request.big_query_destination.dataset = bigquery_dataset_id
     request.big_query_destination.table = bigquery_table_id
+    request.filter = 'agent_id="007"'
 
     # Call the Insights client to export data to BigQuery.
     insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
