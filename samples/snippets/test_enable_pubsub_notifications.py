@@ -36,13 +36,9 @@ def project_id():
 
 
 @pytest.fixture
-def pubsub_client():
-    return pubsub_v1.PublisherClient()
-
-
-@pytest.fixture
-def pubsub_topics(project_id, pubsub_client):
+def pubsub_topics(project_id):
     # Create Pub/Sub topics.
+    pubsub_client = pubsub_v1.PublisherClient()
     conversation_topic_path = pubsub_client.topic_path(
         project_id, CONVERSATION_TOPIC_ID
     )
@@ -60,6 +56,7 @@ def pubsub_topics(project_id, pubsub_client):
 
 @pytest.fixture
 def disable_pubsub_notifications(project_id):
+    yield
     settings = contact_center_insights_v1.Settings()
     settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(
         project_id, "us-central1"
@@ -72,10 +69,11 @@ def disable_pubsub_notifications(project_id):
     insights_client.update_settings(settings=settings, update_mask=update_mask)
 
 
-def test_enable_pubsub_notifications(capsys, project_id, pubsub_topics):
+def test_enable_pubsub_notifications(
+        capsys, project_id, pubsub_topics, disable_pubsub_notifications
+):
     conversation_topic, analysis_topic = pubsub_topics
 
-    # Enable Pub/Sub notifications.
     enable_pubsub_notifications.enable_pubsub_notifications(
         project_id, conversation_topic, analysis_topic
     )
