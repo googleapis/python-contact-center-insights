@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,12 +17,18 @@ from google.api_core import protobuf_helpers
 from google.cloud import contact_center_insights_v1
 
 
-def enable_pubsub_notifications(project_id: str, topic_create_conversation: str, topic_create_analysis: str) -> None:
+def enable_pubsub_notifications(
+    project_id: str, topic_create_conversation: str, topic_create_analysis: str
+) -> None:
     # Construct a settings resource.
     settings = contact_center_insights_v1.Settings()
-    settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(project_id, "us-central1")
-    settings.pubsub_notification_settings = {"create-conversation": topic_create_conversation,
-                                             "create-analysis": topic_create_analysis}
+    settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(
+        project_id, "us-central1"
+    )
+    settings.pubsub_notification_settings = {
+        "create-conversation": topic_create_conversation,
+        "create-analysis": topic_create_analysis,
+    }
 
     update_mask = protobuf_helpers.field_mask(None, type(settings).pb(settings))
 
@@ -31,5 +36,6 @@ def enable_pubsub_notifications(project_id: str, topic_create_conversation: str,
     insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
     insights_client.update_settings(settings=settings, update_mask=update_mask)
     print("Enabled Pub/Sub notifications")
+
 
 # [END contactcenterinsights_enable_pubsub_notifications]
