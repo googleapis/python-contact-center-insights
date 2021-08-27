@@ -45,7 +45,9 @@ def test_export_data_to_bigquery(capsys):
     bigquery_client.create_table(table)
 
     # Export data to the BigQuery table.
-    export_data_to_bigquery.export_data_to_bigquery(project_id, project_id, dataset_id, table_id)
+    export_data_to_bigquery.export_data_to_bigquery(
+        project_id, project_id, dataset_id, table_id
+    )
     out, err = capsys.readouterr()
     assert "Exported data to BigQuery" in out
 

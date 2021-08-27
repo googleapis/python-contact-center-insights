@@ -18,14 +18,17 @@ from google.api_core.exceptions import GoogleAPICallError
 from google.cloud import contact_center_insights_v1
 
 
-def export_data_to_bigquery(project_id: str,
-                            bigquery_project_id: str,
-                            bigquery_dataset_id: str,
-                            bigquery_table_id: str) -> None:
+def export_data_to_bigquery(
+    project_id: str,
+    bigquery_project_id: str,
+    bigquery_dataset_id: str,
+    bigquery_table_id: str,
+) -> None:
     # Construct an export request.
     request = contact_center_insights_v1.ExportInsightsDataRequest()
-    request.parent = contact_center_insights_v1.ContactCenterInsightsClient.common_location_path(project_id,
-                                                                                                 "us-central1")
+    request.parent = contact_center_insights_v1.ContactCenterInsightsClient.common_location_path(
+        project_id, "us-central1"
+    )
     request.big_query_destination.project_id = bigquery_project_id
     request.big_query_destination.dataset = bigquery_dataset_id
     request.big_query_destination.table = bigquery_table_id
@@ -44,5 +47,6 @@ def export_data_to_bigquery(project_id: str,
             raise
 
     print("Exported data to BigQuery")
+
 
 # [END contactcenterinsights_export_data_to_bigquery]

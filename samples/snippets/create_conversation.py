@@ -17,12 +17,15 @@
 from google.cloud import contact_center_insights_v1
 
 
-def create_conversation(project_id: str,
-                        transcript_uri: str = "gs://cloud-samples-data/ccai/chat_sample.json",
-                        audio_uri: str = "gs://cloud-samples-data/ccai/voice_6912.txt") \
-        -> contact_center_insights_v1.Conversation:
+def create_conversation(
+    project_id: str,
+    transcript_uri: str = "gs://cloud-samples-data/ccai/chat_sample.json",
+    audio_uri: str = "gs://cloud-samples-data/ccai/voice_6912.txt",
+) -> contact_center_insights_v1.Conversation:
     # Construct a parent resource.
-    parent = contact_center_insights_v1.ContactCenterInsightsClient.common_location_path(project_id, "us-central1")
+    parent = contact_center_insights_v1.ContactCenterInsightsClient.common_location_path(
+        project_id, "us-central1"
+    )
 
     # Construct a conversation.
     conversation = contact_center_insights_v1.Conversation()
@@ -32,9 +35,12 @@ def create_conversation(project_id: str,
 
     # Call the Insights client to create a conversation.
     insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
-    conversation = insights_client.create_conversation(parent=parent, conversation=conversation)
+    conversation = insights_client.create_conversation(
+        parent=parent, conversation=conversation
+    )
 
     print(f"Created {conversation.name}")
     return conversation
+
 
 # [END contactcenterinsights_create_conversation]
