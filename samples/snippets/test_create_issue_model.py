@@ -56,24 +56,25 @@ def project_has_enough_conversations(project_id, insights_client):
         list_request.page_token = list_response.next_page_token
 
     if conversation_count >= min_conversation_count:
-        return True
-    return False
+        yield True
+    yield False
 
 
 @pytest.fixture
-def issue_model_resource(project_id, insights_client):
-    # Create an issue model.
-    issue_model = create_issue_model.create_issue_model(project_id)
-    yield issue_model
-
-    # Delete the issue model.
-    insights_client.delete_issue_model(name=issue_model.name)
-
-
-def test_create_issue_model(
-    capsys, project_has_enough_conversations, issue_model_resource
-):
+def issue_model_resource(project_id, insights_client, project_has_enough_conversations):
     if project_has_enough_conversations:
-        issue_model = issue_model_resource
+        # Create an issue model.
+        issue_model = create_issue_model.create_issue_model(project_id)
+        yield issue_model
+
+        # Delete the issue model.
+        insights_client.delete_issue_model(name=issue_model.name)
+    else:
+        yield None
+
+
+def test_create_issue_model(capsys, issue_model_resource):
+    issue_model = issue_model_resource
+    if issue_model:
         out, err = capsys.readouterr()
         assert "Created {}".format(issue_model.name) in out
