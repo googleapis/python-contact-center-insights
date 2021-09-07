@@ -15,17 +15,28 @@
 #
 import google.auth
 
+import pytest
+
 import get_operation
 
 
-def test_get_operation(capsys):
+@pytest.fixture
+def project_id():
     _, project_id = google.auth.default()
-    location_id = "us-central1"
+    return project_id
+
+
+def test_get_operation(capsys, project_id):
+    # TODO(developer): Replace this placeholder ID with your operation ID.
     operation_id = "12345"
 
     try:
-        operation = get_operation.get_operation(project_id, location_id, operation_id)
-        assert operation.name == f"projects/{project_id}/locations/{location_id}/operations/{operation_id}"
+        operation = get_operation.get_operation(project_id, operation_id)
+        out, err = capsys.readouterr()
+        if operation.done:
+            assert "Operation is done" in out
+        else:
+            assert "Operation is in progress" in out
     except Exception as e:
         if "not found" in str(e):
             pass
