@@ -17,19 +17,27 @@
 from google.cloud import contact_center_insights_v1
 
 
-def create_phrase_matcher_phone_or_cellphone(project_id: str) -> contact_center_insights_v1.PhraseMatcher:
+def create_phrase_matcher_phone_or_cellphone(
+    project_id: str,
+) -> contact_center_insights_v1.PhraseMatcher:
     # Construct a parent resource.
-    parent = contact_center_insights_v1.ContactCenterInsightsClient.common_location_path(project_id, "us-central1")
+    parent = contact_center_insights_v1.ContactCenterInsightsClient.common_location_path(
+        project_id, "us-central1"
+    )
 
     # Construct a phrase matcher that matches any of its rule groups.
     phrase_matcher = contact_center_insights_v1.PhraseMatcher()
     phrase_matcher.display_name = "PHONE_SERVICE"
-    phrase_matcher.type_ = contact_center_insights_v1.PhraseMatcher.PhraseMatcherType.ANY_OF
+    phrase_matcher.type_ = (
+        contact_center_insights_v1.PhraseMatcher.PhraseMatcherType.ANY_OF
+    )
     phrase_matcher.active = True
 
     # Construct a rule group to match any of the words "PHONE" or "CELLPHONE", ignoring case sensitivity.
     rule_group = contact_center_insights_v1.PhraseMatchRuleGroup()
-    rule_group.type_ = contact_center_insights_v1.PhraseMatchRuleGroup.PhraseMatchRuleGroupType.ANY_OF
+    rule_group.type_ = (
+        contact_center_insights_v1.PhraseMatchRuleGroup.PhraseMatchRuleGroupType.ANY_OF
+    )
 
     for word in ["PHONE", "CELLPHONE"]:
         rule = contact_center_insights_v1.PhraseMatchRule()
@@ -40,7 +48,9 @@ def create_phrase_matcher_phone_or_cellphone(project_id: str) -> contact_center_
 
     # Call the Insights client to create a phrase matcher.
     insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
-    phrase_matcher = insights_client.create_phrase_matcher(parent=parent, phrase_matcher=phrase_matcher)
+    phrase_matcher = insights_client.create_phrase_matcher(
+        parent=parent, phrase_matcher=phrase_matcher
+    )
 
     print(f"Created a phrase matcher named {phrase_matcher.name}")
     return phrase_matcher
@@ -50,19 +60,26 @@ def create_phrase_matcher_phone_or_cellphone(project_id: str) -> contact_center_
 
 # [START contactcenterinsights_create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery]
 def create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery(
-        project_id: str) -> contact_center_insights_v1.PhraseMatcher:
+    project_id: str,
+) -> contact_center_insights_v1.PhraseMatcher:
     # Construct a parent resource.
-    parent = contact_center_insights_v1.ContactCenterInsightsClient.common_location_path(project_id, "us-central1")
+    parent = contact_center_insights_v1.ContactCenterInsightsClient.common_location_path(
+        project_id, "us-central1"
+    )
 
     # Construct a phrase matcher that matches all of its rule groups.
     phrase_matcher = contact_center_insights_v1.PhraseMatcher()
     phrase_matcher.display_name = "NON_SHIPPING_PHONE_SERVICE"
-    phrase_matcher.type_ = contact_center_insights_v1.PhraseMatcher.PhraseMatcherType.ALL_OF
+    phrase_matcher.type_ = (
+        contact_center_insights_v1.PhraseMatcher.PhraseMatcherType.ALL_OF
+    )
     phrase_matcher.active = True
 
     # Construct a rule group to match any of the words "PHONE" or "CELLPHONE", ignoring case sensitivity.
     rule_group1 = contact_center_insights_v1.PhraseMatchRuleGroup()
-    rule_group1.type_ = contact_center_insights_v1.PhraseMatchRuleGroup.PhraseMatchRuleGroupType.ANY_OF
+    rule_group1.type_ = (
+        contact_center_insights_v1.PhraseMatchRuleGroup.PhraseMatchRuleGroupType.ANY_OF
+    )
 
     for word in ["PHONE", "CELLPHONE"]:
         rule = contact_center_insights_v1.PhraseMatchRule()
@@ -73,7 +90,9 @@ def create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery(
 
     # Construct another rule group to not match any of the words "SHIPPING" or "DELIVERY", ignoring case sensitivity.
     rule_group2 = contact_center_insights_v1.PhraseMatchRuleGroup()
-    rule_group2.type_ = contact_center_insights_v1.PhraseMatchRuleGroup.PhraseMatchRuleGroupType.ALL_OF
+    rule_group2.type_ = (
+        contact_center_insights_v1.PhraseMatchRuleGroup.PhraseMatchRuleGroupType.ALL_OF
+    )
 
     for word in ["SHIPPING", "DELIVERY"]:
         rule = contact_center_insights_v1.PhraseMatchRule()
@@ -85,9 +104,12 @@ def create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery(
 
     # Call the Insights client to create a phrase matcher.
     insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
-    phrase_matcher = insights_client.create_phrase_matcher(parent=parent, phrase_matcher=phrase_matcher)
+    phrase_matcher = insights_client.create_phrase_matcher(
+        parent=parent, phrase_matcher=phrase_matcher
+    )
 
     print(f"Created a phrase matcher named {phrase_matcher.name}")
     return phrase_matcher
+
 
 # [END contactcenterinsights_create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery]

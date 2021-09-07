@@ -17,30 +17,59 @@ import google.auth
 
 from google.cloud import contact_center_insights_v1
 
+import pytest
+
 import create_phrase_matcher
 
 
-def test_create_phrase_matcher_phone_or_cellphone(capsys):
+@pytest.fixture
+def project_id():
     _, project_id = google.auth.default()
+    return project_id
 
+
+@pytest.fixture
+def insights_client():
+    return contact_center_insights_v1.ContactCenterInsightsClient()
+
+
+@pytest.fixture
+def phrase_matcher_phone_or_cellphone(project_id, insights_client):
     # Create a phrase matcher.
-    phrase_matcher = create_phrase_matcher.create_phrase_matcher_phone_or_cellphone(project_id)
-    out, err = capsys.readouterr()
-    assert f"Created a phrase matcher named {phrase_matcher.name}" in out
+    phrase_matcher = create_phrase_matcher.create_phrase_matcher_phone_or_cellphone(
+        project_id
+    )
+    yield phrase_matcher
 
     # Delete the phrase matcher.
-    insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
     insights_client.delete_phrase_matcher(name=phrase_matcher.name)
 
 
-def test_create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery(capsys):
-    _, project_id = google.auth.default()
-
+@pytest.fixture
+def phrase_matcher_phone_or_cellphone_not_shipping_or_delivery(
+    project_id, insights_client
+):
     # Create a phrase matcher.
-    phrase_matcher = create_phrase_matcher.create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery(project_id)
+    phrase_matcher = create_phrase_matcher.create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery(
+        project_id
+    )
+    yield phrase_matcher
+
+    # Delete the phrase matcher.
+    insights_client.delete_phrase_matcher(name=phrase_matcher.name)
+
+
+def test_create_phrase_matcher_phone_or_cellphone(
+    capsys, phrase_matcher_phone_or_cellphone
+):
+    phrase_matcher = phrase_matcher_phone_or_cellphone
     out, err = capsys.readouterr()
     assert f"Created a phrase matcher named {phrase_matcher.name}" in out
 
-    # Delete the phrase matcher.
-    insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
-    insights_client.delete_phrase_matcher(name=phrase_matcher.name)
+
+def test_create_phrase_matcher_phone_or_cellphone_not_shipping_or_delivery(
+    capsys, phrase_matcher_phone_or_cellphone_not_shipping_or_delivery
+):
+    phrase_matcher = phrase_matcher_phone_or_cellphone_not_shipping_or_delivery
+    out, err = capsys.readouterr()
+    assert f"Created a phrase matcher named {phrase_matcher.name}" in out
