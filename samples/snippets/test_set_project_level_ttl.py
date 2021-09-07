@@ -18,23 +18,33 @@ import google.auth
 from google.cloud import contact_center_insights_v1
 from google.protobuf import field_mask_pb2
 
+import pytest
+
 import set_project_level_ttl
 
 
-def test_set_project_level_ttl(capsys):
+@pytest.fixture
+def project_id():
     _, project_id = google.auth.default()
+    return project_id
 
-    # Set a project-level TTL.
-    set_project_level_ttl.set_project_level_ttl(project_id)
-    out, err = capsys.readouterr()
-    assert "Set TTL for all incoming conversations to 60 seconds" in out
 
-    # Clear the project-level TTL.
+@pytest.fixture
+def clear_project_level_ttl(project_id):
+    yield
     settings = contact_center_insights_v1.Settings()
-    settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(project_id, "us-central1")
+    settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(
+        project_id, "us-central1"
+    )
     settings.conversation_ttl = None
     update_mask = field_mask_pb2.FieldMask()
     update_mask.paths.append("conversation_ttl")
 
     insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
     insights_client.update_settings(settings=settings, update_mask=update_mask)
+
+
+def test_set_project_level_ttl(capsys, project_id, clear_project_level_ttl):
+    set_project_level_ttl.set_project_level_ttl(project_id)
+    out, err = capsys.readouterr()
+    assert "Set TTL for all incoming conversations to 60 seconds" in out

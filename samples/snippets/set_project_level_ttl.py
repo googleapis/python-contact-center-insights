@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# Set a project-level TTL for all incoming conversations.
 # [START contactcenterinsights_set_project_level_ttl]
 from google.api_core import protobuf_helpers
 from google.cloud import contact_center_insights_v1
@@ -22,17 +23,33 @@ from google.protobuf import duration_pb2
 def set_project_level_ttl(project_id: str) -> None:
     # Construct a settings resource.
     settings = contact_center_insights_v1.Settings()
-    settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(project_id, "us-central1")
+    settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(
+        project_id, "us-central1"
+    )
 
     conversation_ttl = duration_pb2.Duration()
     conversation_ttl.seconds = 60
     settings.conversation_ttl = conversation_ttl
 
+    # Construct an update mask to only update the fields that are set on the settings resource.
     update_mask = protobuf_helpers.field_mask(None, type(settings).pb(settings))
 
-    # Call the Insights client to set a project-level TTL.
+    # Construct an Insights client that will authenticate via Application Default Credentials.
+    # See authentication details at https://cloud.google.com/docs/authentication/production.
     insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+    # Call the Insights client to set a project-level TTL.
     insights_client.update_settings(settings=settings, update_mask=update_mask)
-    print("Set TTL for all incoming conversations to 60 seconds")
+
+    # Call the Insights client to get the project-level TTL to confirm that it was set.
+    new_conversation_ttl = insights_client.get_settings(
+        name=settings.name
+    ).conversation_ttl
+    print(
+        "Set TTL for all incoming conversations to {} seconds".format(
+            new_conversation_ttl.seconds
+        )
+    )
+
 
 # [END contactcenterinsights_set_project_level_ttl]
