@@ -17,52 +17,63 @@ import google.auth
 
 from google.cloud import contact_center_insights_v1
 
+import pytest
+
 import create_issue_model
 
 
-def test_create_issue_model(capsys):
+@pytest.fixture
+def project_id():
     _, project_id = google.auth.default()
+    return project_id
 
+
+@pytest.fixture
+def insights_client():
+    return contact_center_insights_v1.ContactCenterInsightsClient()
+
+
+@pytest.fixture
+def project_has_enough_conversations(project_id, insights_client):
     # Check if the project has the minimum number of conversations required to create an issue model.
     # See https://cloud.google.com/contact-center/insights/docs/topic-model.
-    has_minimum_conversation_count = False
-    insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
     list_request = contact_center_insights_v1.ListConversationsRequest()
-    list_request.parent = contact_center_insights_v1.ContactCenterInsightsClient.common_location_path(project_id,
-                                                                                                      "us-central1")
     list_request.page_size = 1000
+    list_request.parent = contact_center_insights_v1.ContactCenterInsightsClient.common_location_path(
+        project_id, "us-central1"
+    )
 
-    # List the first 9,000 conversations.
-    next_page_token = ""
+    min_conversation_count = 10000
     conversation_count = 0
-    for i in range(9):
-        if next_page_token:
-            list_request.page_token = next_page_token
+    while conversation_count < min_conversation_count:
         list_response = insights_client.list_conversations(request=list_request)
-
-        # If there's a next page token, save it for the next run.
-        if list_response.next_page_token:
-            next_page_token = list_response.next_page_token
-            conversation_count += 1000
-        else:
+        if len(list_response.conversations) == 0:
             break
+        conversation_count += len(list_response.conversations)
 
-    # After 9,000 conversations, list the next 999 conversations if there's a next page token.
-    if next_page_token and conversation_count == 9000:
-        list_request.page_token = next_page_token
-        list_request.page_size = 999
-        list_response = insights_client.list_conversations(request=list_request)
+        if not list_response.next_page_token:
+            break
+        list_request.page_token = list_response.next_page_token
 
-        # If there's a next page token after 9,999 conversations, it means that the project has 9,999 conversations
-        # and more, which meets the minimum number of conversations required to create an issue model.
-        if list_response.next_page_token:
-            has_minimum_conversation_count = True
+    if conversation_count >= min_conversation_count:
+        return True
+    return False
 
-    if has_minimum_conversation_count:
-        # Create an issue model.
-        issue_model = create_issue_model.create_issue_model(project_id)
+
+@pytest.fixture
+def issue_model_resource(project_id, insights_client):
+    # Create an issue model.
+    issue_model = create_issue_model.create_issue_model(project_id)
+    yield issue_model
+
+    # Delete the issue model.
+    insights_client.delete_issue_model(name=issue_model.name)
+
+
+def test_create_issue_model(
+    capsys, project_has_enough_conversations, issue_model_resource
+):
+    if project_has_enough_conversations:
+        issue_model = issue_model_resource
         out, err = capsys.readouterr()
         assert "Created {}".format(issue_model.name) in out
-
-        # Delete the issue model.
-        insights_client.delete_issue_model(name=issue_model.name)
