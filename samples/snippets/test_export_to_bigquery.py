@@ -54,7 +54,7 @@ def bigquery_resources(project_id, unique_id):
 
     yield dataset_id, table_id
 
-    # Delete the BigQuery dataset.
+    # Delete the BigQuery dataset and table.
     bigquery_client.delete_dataset(dataset_id, delete_contents=True)
 
 
