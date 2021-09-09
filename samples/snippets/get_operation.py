@@ -18,15 +18,10 @@ from google.cloud import contact_center_insights_v1
 from google.longrunning import operations_pb2
 
 
-def get_operation(project_id: str, operation_id: str) -> operations_pb2.Operation:
+def get_operation(operation_name: str) -> operations_pb2.Operation:
     # Construct an Insights client that will authenticate via Application Default Credentials.
     # See authentication details at https://cloud.google.com/docs/authentication/production.
     insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
-
-    # Construct the operation name.
-    operation_name = (
-        f"projects/{project_id}/locations/us-central1/operations/{operation_id}"
-    )
 
     # Call the Insights client to get the operation.
     operation = insights_client.transport.operations_client.get_operation(
