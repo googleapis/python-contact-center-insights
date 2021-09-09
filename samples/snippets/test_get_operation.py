@@ -37,7 +37,5 @@ def test_get_operation(capsys, project_id):
         else:
             assert "Operation is in progress" in out
     except Exception as e:
-        if "not found" in str(e):
-            pass
-        else:
+        if "not found" not in str(e):
             raise
