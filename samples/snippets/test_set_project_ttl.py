@@ -19,7 +19,7 @@ from google.protobuf import field_mask_pb2
 
 import pytest
 
-import set_project_level_ttl
+import set_project_ttl
 
 
 @pytest.fixture
@@ -29,7 +29,7 @@ def project_id():
 
 
 @pytest.fixture
-def clear_project_level_ttl(project_id):
+def clear_project_ttl(project_id):
     yield
     settings = contact_center_insights_v1.Settings()
     settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(
@@ -43,7 +43,7 @@ def clear_project_level_ttl(project_id):
     insights_client.update_settings(settings=settings, update_mask=update_mask)
 
 
-def test_set_project_level_ttl(capsys, project_id, clear_project_level_ttl):
-    set_project_level_ttl.set_project_level_ttl(project_id)
+def test_set_project_ttl(capsys, project_id, clear_project_ttl):
+    set_project_ttl.set_project_ttl(project_id)
     out, err = capsys.readouterr()
     assert "Set TTL for all incoming conversations to 60 seconds" in out

@@ -13,13 +13,13 @@
 # limitations under the License.
 #
 # Set a project-level TTL for all incoming conversations.
-# [START contactcenterinsights_set_project_level_ttl]
+# [START contactcenterinsights_set_project_ttl]
 from google.api_core import protobuf_helpers
 from google.cloud import contact_center_insights_v1
 from google.protobuf import duration_pb2
 
 
-def set_project_level_ttl(project_id: str) -> None:
+def set_project_ttl(project_id: str) -> None:
     # Construct a settings resource.
     settings = contact_center_insights_v1.Settings()
     settings.name = contact_center_insights_v1.ContactCenterInsightsClient.settings_path(
@@ -51,4 +51,4 @@ def set_project_level_ttl(project_id: str) -> None:
     )
 
 
-# [END contactcenterinsights_set_project_level_ttl]
+# [END contactcenterinsights_set_project_ttl]
