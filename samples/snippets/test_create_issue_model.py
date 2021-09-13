@@ -35,7 +35,7 @@ def insights_client():
 
 
 @pytest.fixture
-def count_total_conversations(project_id, insights_client):
+def count_conversations(project_id, insights_client):
     # Check if the project has the minimum number of conversations required to create an issue model.
     # See https://cloud.google.com/contact-center/insights/docs/topic-model.
     list_request = contact_center_insights_v1.ListConversationsRequest()
@@ -59,8 +59,8 @@ def count_total_conversations(project_id, insights_client):
 
 
 @pytest.fixture
-def issue_model_resource(project_id, insights_client, count_total_conversations):
-    conversation_count = count_total_conversations
+def issue_model_resource(project_id, insights_client, count_conversations):
+    conversation_count = count_conversations
     if conversation_count >= MIN_CONVERSATION_COUNT:
         # Create an issue model.
         issue_model = create_issue_model.create_issue_model(project_id)
