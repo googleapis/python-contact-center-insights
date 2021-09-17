@@ -35,7 +35,7 @@ def create_conversation_with_ttl(
 
     # Construct a TTL.
     ttl = duration_pb2.Duration()
-    ttl.seconds = 600
+    ttl.seconds = 86400
     conversation.ttl = ttl
 
     # Call the Insights client to create a conversation.
