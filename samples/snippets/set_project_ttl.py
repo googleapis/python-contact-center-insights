@@ -45,10 +45,9 @@ def set_project_ttl(project_id: str) -> None:
         name=settings.name
     ).conversation_ttl
     print(
-        "Set TTL for all incoming conversations to {} seconds".format(
-            new_conversation_ttl.seconds
+        "Set TTL for all incoming conversations to {} day".format(
+            new_conversation_ttl.days
         )
     )
-
 
 # [END contactcenterinsights_set_project_ttl]

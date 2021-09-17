@@ -46,4 +46,4 @@ def clear_project_ttl(project_id):
 def test_set_project_ttl(capsys, project_id, clear_project_ttl):
     set_project_ttl.set_project_ttl(project_id)
     out, err = capsys.readouterr()
-    assert "Set TTL for all incoming conversations to 86400 seconds" in out
+    assert "Set TTL for all incoming conversations to 1 day" in out
