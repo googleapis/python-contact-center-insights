@@ -27,7 +27,7 @@ def set_project_ttl(project_id: str) -> None:
     )
 
     conversation_ttl = duration_pb2.Duration()
-    conversation_ttl.seconds = 60
+    conversation_ttl.seconds = 86400
     settings.conversation_ttl = conversation_ttl
 
     # Construct an update mask to only update the fields that are set on the settings resource.
