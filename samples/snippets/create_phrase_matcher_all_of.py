@@ -33,8 +33,8 @@ def create_phrase_matcher_all_of(
     phrase_matcher.active = True
 
     # Construct a rule group to match the word "PHONE" or "CELLPHONE", ignoring case sensitivity.
-    rule_group1 = contact_center_insights_v1.PhraseMatchRuleGroup()
-    rule_group1.type_ = (
+    rule_group_phone_or_cellphone = contact_center_insights_v1.PhraseMatchRuleGroup()
+    rule_group_phone_or_cellphone.type_ = (
         contact_center_insights_v1.PhraseMatchRuleGroup.PhraseMatchRuleGroupType.ANY_OF
     )
 
@@ -42,12 +42,14 @@ def create_phrase_matcher_all_of(
         rule = contact_center_insights_v1.PhraseMatchRule()
         rule.query = word
         rule.config.exact_match_config = contact_center_insights_v1.ExactMatchConfig()
-        rule_group1.phrase_match_rules.append(rule)
-    phrase_matcher.phrase_match_rule_groups.append(rule_group1)
+        rule_group_phone_or_cellphone.phrase_match_rules.append(rule)
+    phrase_matcher.phrase_match_rule_groups.append(rule_group_phone_or_cellphone)
 
     # Construct another rule group to not match the word "SHIPPING" or "DELIVERY", ignoring case sensitivity.
-    rule_group2 = contact_center_insights_v1.PhraseMatchRuleGroup()
-    rule_group2.type_ = (
+    rule_group_not_shipping_or_delivery = (
+        contact_center_insights_v1.PhraseMatchRuleGroup()
+    )
+    rule_group_not_shipping_or_delivery.type_ = (
         contact_center_insights_v1.PhraseMatchRuleGroup.PhraseMatchRuleGroupType.ALL_OF
     )
 
@@ -56,8 +58,8 @@ def create_phrase_matcher_all_of(
         rule.query = word
         rule.negated = True
         rule.config.exact_match_config = contact_center_insights_v1.ExactMatchConfig()
-        rule_group2.phrase_match_rules.append(rule)
-    phrase_matcher.phrase_match_rule_groups.append(rule_group2)
+        rule_group_not_shipping_or_delivery.phrase_match_rules.append(rule)
+    phrase_matcher.phrase_match_rule_groups.append(rule_group_not_shipping_or_delivery)
 
     # Call the Insights client to create a phrase matcher.
     insights_client = contact_center_insights_v1.ContactCenterInsightsClient()
