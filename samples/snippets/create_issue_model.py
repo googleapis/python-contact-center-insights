@@ -33,7 +33,7 @@ def create_issue_model(project_id: str) -> contact_center_insights_v1.IssueModel
         parent=parent, issue_model=issue_model
     )
 
-    issue_model = issue_model_operation.result(timeout=600000)
+    issue_model = issue_model_operation.result(timeout=86400)
     print(f"Created an issue model named {issue_model.name}")
     return issue_model
 

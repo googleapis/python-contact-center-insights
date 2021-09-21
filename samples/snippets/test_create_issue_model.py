@@ -43,17 +43,8 @@ def count_conversations(project_id, insights_client):
     list_request.parent = contact_center_insights_v1.ContactCenterInsightsClient.common_location_path(
         project_id, "us-central1"
     )
-
-    conversation_count = 0
-    while conversation_count < MIN_CONVERSATION_COUNT:
-        list_response = insights_client.list_conversations(request=list_request)
-        if len(list_response.conversations) == 0:
-            break
-        conversation_count += len(list_response.conversations)
-
-        if not list_response.next_page_token:
-            break
-        list_request.page_token = list_response.next_page_token
+    conversations = insights_client.list_conversations(request=list_request)
+    conversation_count = len(list(conversations))
 
     yield conversation_count
 
