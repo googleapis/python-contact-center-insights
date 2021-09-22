@@ -37,5 +37,8 @@ def test_get_operation(capsys, project_id):
         else:
             assert "Operation is in progress" in out
     except Exception as e:
+        # If the provided fake operation name on line 30 is used,
+        # we'll expect the error message to contain "not found"
+        # because that operation name doesn't exist.
         if "not found" not in str(e):
             raise
