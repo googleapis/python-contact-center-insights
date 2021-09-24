@@ -69,7 +69,7 @@ def analysis_operation(conversation_resource, insights_client):
     )
 
     # Wait until the analysis operation is done and return the operation.
-    analysis_operation.result(timeout=86400)
+    analysis_operation.result(timeout=600)
     yield analysis_operation
 
 
