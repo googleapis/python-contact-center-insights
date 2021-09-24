@@ -14,9 +14,14 @@
 #
 import google.auth
 
+from google.cloud import contact_center_insights_v1
+
 import pytest
 
 import get_operation
+
+TRANSCRIPT_URI = "gs://cloud-samples-data/ccai/chat_sample.json"
+AUDIO_URI = "gs://cloud-samples-data/ccai/voice_6912.txt"
 
 
 @pytest.fixture
@@ -25,20 +30,52 @@ def project_id():
     return project_id
 
 
-def test_get_operation(capsys, project_id):
-    # TODO(developer): Replace this variable with your operation name.
-    operation_name = f"projects/{project_id}/locations/us-central1/operations/12345"
+@pytest.fixture
+def insights_client():
+    return contact_center_insights_v1.ContactCenterInsightsClient()
 
-    try:
-        operation = get_operation.get_operation(operation_name)
-        out, err = capsys.readouterr()
-        if operation.done:
-            assert "Operation is done" in out
-        else:
-            assert "Operation is in progress" in out
-    except Exception as e:
-        # If the provided fake operation name on line 30 is used,
-        # we'll expect the error message to contain "not found"
-        # because that operation name doesn't exist.
-        if "not found" not in str(e):
-            raise
+
+@pytest.fixture
+def conversation_resource(project_id, insights_client):
+    # Create a conversation.
+    parent = contact_center_insights_v1.ContactCenterInsightsClient.common_location_path(
+        project_id, "us-central1"
+    )
+
+    conversation = contact_center_insights_v1.Conversation()
+    conversation.data_source.gcs_source.transcript_uri = TRANSCRIPT_URI
+    conversation.data_source.gcs_source.audio_uri = AUDIO_URI
+    conversation.medium = contact_center_insights_v1.Conversation.Medium.CHAT
+
+    conversation = insights_client.create_conversation(
+        parent=parent, conversation=conversation
+    )
+    yield conversation
+
+    # Delete the conversation.
+    delete_request = contact_center_insights_v1.DeleteConversationRequest()
+    delete_request.name = conversation.name
+    delete_request.force = True
+    insights_client.delete_conversation(request=delete_request)
+
+
+@pytest.fixture
+def analysis_operation(conversation_resource, insights_client):
+    # Create an analysis operation.
+    conversation_name = conversation_resource.name
+    analysis = contact_center_insights_v1.Analysis()
+
+    analysis_operation = insights_client.create_analysis(
+        parent=conversation_name, analysis=analysis
+    )
+
+    # Wait until the analysis operation is done.
+    analysis_operation.result(timeout=86400)
+    yield analysis_operation
+
+
+def test_get_operation(capsys, analysis_operation):
+    operation_name = analysis_operation.operation.name
+    get_operation.get_operation(operation_name)
+    out, err = capsys.readouterr()
+    assert "Operation is done" in out
