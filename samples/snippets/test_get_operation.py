@@ -61,15 +61,14 @@ def conversation_resource(project_id, insights_client):
 
 @pytest.fixture
 def analysis_operation(conversation_resource, insights_client):
-    # Create an analysis operation.
+    # Create an analysis.
     conversation_name = conversation_resource.name
     analysis = contact_center_insights_v1.Analysis()
-
     analysis_operation = insights_client.create_analysis(
         parent=conversation_name, analysis=analysis
     )
 
-    # Wait until the analysis operation is done.
+    # Wait until the analysis operation is done and return the operation.
     analysis_operation.result(timeout=86400)
     yield analysis_operation
 
