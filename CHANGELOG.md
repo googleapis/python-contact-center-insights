@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.4.1](https://www.github.com/googleapis/python-contact-center-insights/compare/v0.4.0...v0.4.1) (2021-09-30)
+
+
+### Bug Fixes
+
+* improper types in pagers generation ([3bc4439](https://www.github.com/googleapis/python-contact-center-insights/commit/3bc4439fe9757741c8f7eeed027d60707c64a514))
+
 ## [0.4.0](https://www.github.com/googleapis/python-contact-center-insights/compare/v0.3.1...v0.4.0) (2021-09-29)
 
 
