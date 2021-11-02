@@ -1,14 +1,14 @@
 Python Client for Contact Center AI Insights API (Preview)
 ==========================================================
 
-|beta| |pypi| |versions|
+|ga| |pypi| |versions|
 
 Python client for `Contact Center AI Insights`_
 
 - `Client Library Documentation`_
 - `Product Documentation`_
 
-.. |beta| image:: https://img.shields.io/badge/support-beta-gold.svg
+.. |ga| image:: https://img.shields.io/badge/support-ga-gold.svg
    :target: https://github.com/googleapis/google-cloud-python/blob/main/README.rst#general-availability
 .. |pypi| image:: https://img.shields.io/pypi/v/google-cloud-contact-center-insights.svg
    :target: https://pypi.org/project/google-cloud-contact-center-insights/
