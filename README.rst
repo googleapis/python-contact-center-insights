@@ -14,9 +14,9 @@ Python client for `Contact Center AI Insights`_
    :target: https://pypi.org/project/google-cloud-contact-center-insights/
 .. |versions| image:: https://img.shields.io/pypi/pyversions/google-cloud-contact-center-insights.svg
    :target: https://pypi.org/project/google-cloud-contact-center-insights/
-.. _Contact Center AI Insights: https://cloud.google.com/dialogflow/priv/docs/insights
+.. _Contact Center AI Insights: https://cloud.google.com/contact-center/insights/docs
 .. _Client Library Documentation: https://googleapis.dev/python/contactcenterinsights/latest
-.. _Product Documentation:  https://cloud.google.com/dialogflow/priv/docs/insights
+.. _Product Documentation:  https://cloud.google.com/contact-center/insights/docs
 
 Quick Start
 -----------
@@ -78,5 +78,5 @@ Next Steps
 -  View this `README`_ to see the full list of Cloud
    APIs that we cover.
 
-.. _Contact Center AI Insights API Product documentation:  https://cloud.google.com/dialogflow/priv/docs/insights
+.. _Contact Center AI Insights API Product documentation:  https://cloud.google.com/contact-center/insights/docs
 .. _README: https://github.com/googleapis/google-cloud-python/blob/main/README.rst
