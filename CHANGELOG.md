@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.2.0](https://www.github.com/googleapis/python-contact-center-insights/compare/v1.1.0...v1.2.0) (2022-01-09)
+
+
+### Features
+
+* Add WriteDisposition to BigQuery Export API ([#107](https://www.github.com/googleapis/python-contact-center-insights/issues/107)) ([bb36139](https://www.github.com/googleapis/python-contact-center-insights/commit/bb361392935268ba9c45bf89e71876dc0132fc5a))
+* new API for the View resource ([#114](https://www.github.com/googleapis/python-contact-center-insights/issues/114)) ([e55463c](https://www.github.com/googleapis/python-contact-center-insights/commit/e55463cb32d988273bf328fbc16394e64dd946d5))
+* new feature flag disable_issue_modeling ([#103](https://www.github.com/googleapis/python-contact-center-insights/issues/103)) ([c656ea7](https://www.github.com/googleapis/python-contact-center-insights/commit/c656ea78a3d8244a291e0a7e7de023c5b78ac27b))
+* remove feature flag disable_issue_modeling ([#105](https://www.github.com/googleapis/python-contact-center-insights/issues/105)) ([6ce0ceb](https://www.github.com/googleapis/python-contact-center-insights/commit/6ce0ceb99d81b313a811f309ad38fa9fcc7eac8b))
+
+
+### Documentation
+
+* fixed formatting issues in the reference documentation ([c656ea7](https://www.github.com/googleapis/python-contact-center-insights/commit/c656ea78a3d8244a291e0a7e7de023c5b78ac27b))
+
 ## [1.1.0](https://www.github.com/googleapis/python-contact-center-insights/compare/v1.0.0...v1.1.0) (2021-11-05)
 
 
