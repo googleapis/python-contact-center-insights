@@ -251,6 +251,25 @@ class ContactCenterInsightsAsyncClient:
     ) -> resources.Conversation:
         r"""Creates a conversation.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_create_conversation():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.CreateConversationRequest(
+                    parent="parent_value",
+                )
+
+                # Make the request
+                response = client.create_conversation(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.CreateConversationRequest, dict]):
                 The request object. Request to create a conversation.
@@ -344,6 +363,24 @@ class ContactCenterInsightsAsyncClient:
     ) -> resources.Conversation:
         r"""Updates a conversation.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_update_conversation():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.UpdateConversationRequest(
+                )
+
+                # Make the request
+                response = client.update_conversation(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.UpdateConversationRequest, dict]):
                 The request object. The request to update a
@@ -422,6 +459,25 @@ class ContactCenterInsightsAsyncClient:
     ) -> resources.Conversation:
         r"""Gets a conversation.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_get_conversation():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.GetConversationRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.get_conversation(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.GetConversationRequest, dict]):
                 The request object. The request to get a conversation.
@@ -489,6 +545,24 @@ class ContactCenterInsightsAsyncClient:
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListConversationsAsyncPager:
         r"""Lists conversations.
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_list_conversations():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.ListConversationsRequest(
+                    parent="parent_value",
+                )
+
+                # Make the request
+                page_result = client.list_conversations(request=request)
+                for response in page_result:
+                    print(response)
 
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.ListConversationsRequest, dict]):
@@ -569,6 +643,22 @@ class ContactCenterInsightsAsyncClient:
     ) -> None:
         r"""Deletes a conversation.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_delete_conversation():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.DeleteConversationRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.delete_conversation(request=request)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.DeleteConversationRequest, dict]):
                 The request object. The request to delete a
@@ -634,6 +724,28 @@ class ContactCenterInsightsAsyncClient:
     ) -> operation_async.AsyncOperation:
         r"""Creates an analysis. The long running operation is
         done when the analysis has completed.
+
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_create_analysis():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.CreateAnalysisRequest(
+                    parent="parent_value",
+                )
+
+                # Make the request
+                operation = client.create_analysis(request=request)
+
+                print("Waiting for operation to complete...")
+
+                response = operation.result()
+                print(response)
 
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.CreateAnalysisRequest, dict]):
@@ -723,6 +835,25 @@ class ContactCenterInsightsAsyncClient:
     ) -> resources.Analysis:
         r"""Gets an analysis.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_get_analysis():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.GetAnalysisRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.get_analysis(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.GetAnalysisRequest, dict]):
                 The request object. The request to get an analysis.
@@ -790,6 +921,24 @@ class ContactCenterInsightsAsyncClient:
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListAnalysesAsyncPager:
         r"""Lists analyses.
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_list_analyses():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.ListAnalysesRequest(
+                    parent="parent_value",
+                )
+
+                # Make the request
+                page_result = client.list_analyses(request=request)
+                for response in page_result:
+                    print(response)
 
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.ListAnalysesRequest, dict]):
@@ -869,6 +1018,22 @@ class ContactCenterInsightsAsyncClient:
     ) -> None:
         r"""Deletes an analysis.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_delete_analysis():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.DeleteAnalysisRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.delete_analysis(request=request)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.DeleteAnalysisRequest, dict]):
                 The request object. The request to delete an analysis.
@@ -932,6 +1097,32 @@ class ContactCenterInsightsAsyncClient:
     ) -> operation_async.AsyncOperation:
         r"""Export insights data to a destination defined in the
         request body.
+
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_export_insights_data():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                big_query_destination = contact_center_insights_v1.BigQueryDestination()
+                big_query_destination.dataset = "dataset_value"
+
+                request = contact_center_insights_v1.ExportInsightsDataRequest(
+                    big_query_destination=big_query_destination,
+                    parent="parent_value",
+                )
+
+                # Make the request
+                operation = client.export_insights_data(request=request)
+
+                print("Waiting for operation to complete...")
+
+                response = operation.result()
+                print(response)
 
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.ExportInsightsDataRequest, dict]):
@@ -1014,6 +1205,27 @@ class ContactCenterInsightsAsyncClient:
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Creates an issue model.
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_create_issue_model():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.CreateIssueModelRequest(
+                    parent="parent_value",
+                )
+
+                # Make the request
+                operation = client.create_issue_model(request=request)
+
+                print("Waiting for operation to complete...")
+
+                response = operation.result()
+                print(response)
 
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.CreateIssueModelRequest, dict]):
@@ -1105,6 +1317,24 @@ class ContactCenterInsightsAsyncClient:
     ) -> resources.IssueModel:
         r"""Updates an issue model.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_update_issue_model():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.UpdateIssueModelRequest(
+                )
+
+                # Make the request
+                response = client.update_issue_model(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.UpdateIssueModelRequest, dict]):
                 The request object. The request to update an issue
@@ -1183,6 +1413,25 @@ class ContactCenterInsightsAsyncClient:
     ) -> resources.IssueModel:
         r"""Gets an issue model.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_get_issue_model():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.GetIssueModelRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.get_issue_model(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.GetIssueModelRequest, dict]):
                 The request object. The request to get an issue model.
@@ -1251,6 +1500,25 @@ class ContactCenterInsightsAsyncClient:
     ) -> contact_center_insights.ListIssueModelsResponse:
         r"""Lists issue models.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_list_issue_models():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.ListIssueModelsRequest(
+                    parent="parent_value",
+                )
+
+                # Make the request
+                response = client.list_issue_models(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.ListIssueModelsRequest, dict]):
                 The request object. Request to list issue models.
@@ -1318,6 +1586,27 @@ class ContactCenterInsightsAsyncClient:
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Deletes an issue model.
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_delete_issue_model():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.DeleteIssueModelRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                operation = client.delete_issue_model(request=request)
+
+                print("Waiting for operation to complete...")
+
+                response = operation.result()
+                print(response)
 
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.DeleteIssueModelRequest, dict]):
@@ -1413,6 +1702,28 @@ class ContactCenterInsightsAsyncClient:
         is already deployed. An issue model can only be used in
         analysis after it has been deployed.
 
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_deploy_issue_model():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.DeployIssueModelRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                operation = client.deploy_issue_model(request=request)
+
+                print("Waiting for operation to complete...")
+
+                response = operation.result()
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.DeployIssueModelRequest, dict]):
                 The request object. The request to deploy an issue
@@ -1494,6 +1805,28 @@ class ContactCenterInsightsAsyncClient:
         r"""Undeploys an issue model.
         An issue model can not be used in analysis after it has
         been undeployed.
+
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_undeploy_issue_model():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.UndeployIssueModelRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                operation = client.undeploy_issue_model(request=request)
+
+                print("Waiting for operation to complete...")
+
+                response = operation.result()
+                print(response)
 
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.UndeployIssueModelRequest, dict]):
@@ -1577,6 +1910,25 @@ class ContactCenterInsightsAsyncClient:
     ) -> resources.Issue:
         r"""Gets an issue.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_get_issue():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.GetIssueRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.get_issue(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.GetIssueRequest, dict]):
                 The request object. The request to get an issue.
@@ -1644,6 +1996,25 @@ class ContactCenterInsightsAsyncClient:
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> contact_center_insights.ListIssuesResponse:
         r"""Lists issues.
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_list_issues():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.ListIssuesRequest(
+                    parent="parent_value",
+                )
+
+                # Make the request
+                response = client.list_issues(request=request)
+
+                # Handle response
+                print(response)
 
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.ListIssuesRequest, dict]):
@@ -1713,6 +2084,24 @@ class ContactCenterInsightsAsyncClient:
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.Issue:
         r"""Updates an issue.
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_update_issue():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.UpdateIssueRequest(
+                )
+
+                # Make the request
+                response = client.update_issue(request=request)
+
+                # Handle response
+                print(response)
 
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.UpdateIssueRequest, dict]):
@@ -1793,6 +2182,25 @@ class ContactCenterInsightsAsyncClient:
     ) -> contact_center_insights.CalculateIssueModelStatsResponse:
         r"""Gets an issue model's statistics.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_calculate_issue_model_stats():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.CalculateIssueModelStatsRequest(
+                    issue_model="issue_model_value",
+                )
+
+                # Make the request
+                response = client.calculate_issue_model_stats(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.CalculateIssueModelStatsRequest, dict]):
                 The request object. Request to get statistics of an
@@ -1866,6 +2274,29 @@ class ContactCenterInsightsAsyncClient:
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.PhraseMatcher:
         r"""Creates a phrase matcher.
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_create_phrase_matcher():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                phrase_matcher = contact_center_insights_v1.PhraseMatcher()
+                phrase_matcher.type_ = "ANY_OF"
+
+                request = contact_center_insights_v1.CreatePhraseMatcherRequest(
+                    parent="parent_value",
+                    phrase_matcher=phrase_matcher,
+                )
+
+                # Make the request
+                response = client.create_phrase_matcher(request=request)
+
+                # Handle response
+                print(response)
 
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.CreatePhraseMatcherRequest, dict]):
@@ -1947,6 +2378,25 @@ class ContactCenterInsightsAsyncClient:
     ) -> resources.PhraseMatcher:
         r"""Gets a phrase matcher.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_get_phrase_matcher():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.GetPhraseMatcherRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.get_phrase_matcher(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.GetPhraseMatcherRequest, dict]):
                 The request object. The request to get a a phrase
@@ -2015,6 +2465,24 @@ class ContactCenterInsightsAsyncClient:
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListPhraseMatchersAsyncPager:
         r"""Lists phrase matchers.
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_list_phrase_matchers():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.ListPhraseMatchersRequest(
+                    parent="parent_value",
+                )
+
+                # Make the request
+                page_result = client.list_phrase_matchers(request=request)
+                for response in page_result:
+                    print(response)
 
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.ListPhraseMatchersRequest, dict]):
@@ -2095,6 +2563,22 @@ class ContactCenterInsightsAsyncClient:
     ) -> None:
         r"""Deletes a phrase matcher.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_delete_phrase_matcher():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.DeletePhraseMatcherRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.delete_phrase_matcher(request=request)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.DeletePhraseMatcherRequest, dict]):
                 The request object. The request to delete a phrase
@@ -2159,6 +2643,28 @@ class ContactCenterInsightsAsyncClient:
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.PhraseMatcher:
         r"""Updates a phrase matcher.
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_update_phrase_matcher():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                phrase_matcher = contact_center_insights_v1.PhraseMatcher()
+                phrase_matcher.type_ = "ANY_OF"
+
+                request = contact_center_insights_v1.UpdatePhraseMatcherRequest(
+                    phrase_matcher=phrase_matcher,
+                )
+
+                # Make the request
+                response = client.update_phrase_matcher(request=request)
+
+                # Handle response
+                print(response)
 
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.UpdatePhraseMatcherRequest, dict]):
@@ -2238,6 +2744,25 @@ class ContactCenterInsightsAsyncClient:
     ) -> contact_center_insights.CalculateStatsResponse:
         r"""Gets conversation statistics.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_calculate_stats():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.CalculateStatsRequest(
+                    location="location_value",
+                )
+
+                # Make the request
+                response = client.calculate_stats(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.CalculateStatsRequest, dict]):
                 The request object. The request for calculating
@@ -2309,6 +2834,25 @@ class ContactCenterInsightsAsyncClient:
     ) -> resources.Settings:
         r"""Gets project-level settings.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_get_settings():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.GetSettingsRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.get_settings(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.GetSettingsRequest, dict]):
                 The request object. The request to get project-level
@@ -2378,6 +2922,24 @@ class ContactCenterInsightsAsyncClient:
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.Settings:
         r"""Updates project-level settings.
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_update_settings():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.UpdateSettingsRequest(
+                )
+
+                # Make the request
+                response = client.update_settings(request=request)
+
+                # Handle response
+                print(response)
 
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.UpdateSettingsRequest, dict]):
@@ -2458,6 +3020,25 @@ class ContactCenterInsightsAsyncClient:
     ) -> resources.View:
         r"""Creates a view.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_create_view():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.CreateViewRequest(
+                    parent="parent_value",
+                )
+
+                # Make the request
+                response = client.create_view(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.CreateViewRequest, dict]):
                 The request object. The request to create a view.
@@ -2537,6 +3118,25 @@ class ContactCenterInsightsAsyncClient:
     ) -> resources.View:
         r"""Gets a view.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_get_view():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.GetViewRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.get_view(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.GetViewRequest, dict]):
                 The request object. The request to get a view.
@@ -2604,6 +3204,24 @@ class ContactCenterInsightsAsyncClient:
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListViewsAsyncPager:
         r"""Lists views.
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_list_views():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.ListViewsRequest(
+                    parent="parent_value",
+                )
+
+                # Make the request
+                page_result = client.list_views(request=request)
+                for response in page_result:
+                    print(response)
 
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.ListViewsRequest, dict]):
@@ -2684,6 +3302,24 @@ class ContactCenterInsightsAsyncClient:
     ) -> resources.View:
         r"""Updates a view.
 
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_update_view():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.UpdateViewRequest(
+                )
+
+                # Make the request
+                response = client.update_view(request=request)
+
+                # Handle response
+                print(response)
+
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.UpdateViewRequest, dict]):
                 The request object. The request to update a view.
@@ -2758,6 +3394,22 @@ class ContactCenterInsightsAsyncClient:
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Deletes a view.
+
+        .. code-block::
+
+            from google.cloud import contact_center_insights_v1
+
+            def sample_delete_view():
+                # Create a client
+                client = contact_center_insights_v1.ContactCenterInsightsClient()
+
+                # Initialize request argument(s)
+                request = contact_center_insights_v1.DeleteViewRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.delete_view(request=request)
 
         Args:
             request (Union[google.cloud.contact_center_insights_v1.types.DeleteViewRequest, dict]):
