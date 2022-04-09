@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -609,7 +609,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_create_conversation():
                 # Create a client
@@ -726,7 +726,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_update_conversation():
                 # Create a client
@@ -827,7 +827,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_get_conversation():
                 # Create a client
@@ -919,7 +919,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_list_conversations():
                 # Create a client
@@ -1026,7 +1026,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_delete_conversation():
                 # Create a client
@@ -1112,7 +1112,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_create_analysis():
                 # Create a client
@@ -1228,7 +1228,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_get_analysis():
                 # Create a client
@@ -1320,7 +1320,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_list_analyses():
                 # Create a client
@@ -1426,7 +1426,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_delete_analysis():
                 # Create a client
@@ -1510,7 +1510,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_export_insights_data():
                 # Create a client
@@ -1624,7 +1624,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_create_issue_model():
                 # Create a client
@@ -1742,7 +1742,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_update_issue_model():
                 # Create a client
@@ -1843,7 +1843,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_get_issue_model():
                 # Create a client
@@ -1935,7 +1935,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_list_issue_models():
                 # Create a client
@@ -2027,7 +2027,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_delete_issue_model():
                 # Create a client
@@ -2150,7 +2150,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_deploy_issue_model():
                 # Create a client
@@ -2261,7 +2261,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_undeploy_issue_model():
                 # Create a client
@@ -2371,7 +2371,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_get_issue():
                 # Create a client
@@ -2463,7 +2463,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_list_issues():
                 # Create a client
@@ -2556,7 +2556,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_update_issue():
                 # Create a client
@@ -2658,7 +2658,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_calculate_issue_model_stats():
                 # Create a client
@@ -2760,7 +2760,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_create_phrase_matcher():
                 # Create a client
@@ -2868,7 +2868,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_get_phrase_matcher():
                 # Create a client
@@ -2961,7 +2961,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_list_phrase_matchers():
                 # Create a client
@@ -3068,7 +3068,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_delete_phrase_matcher():
                 # Create a client
@@ -3152,7 +3152,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_update_phrase_matcher():
                 # Create a client
@@ -3257,7 +3257,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_calculate_stats():
                 # Create a client
@@ -3352,7 +3352,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_get_settings():
                 # Create a client
@@ -3446,7 +3446,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_update_settings():
                 # Create a client
@@ -3548,7 +3548,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_create_view():
                 # Create a client
@@ -3651,7 +3651,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_get_view():
                 # Create a client
@@ -3743,7 +3743,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_list_views():
                 # Create a client
@@ -3850,7 +3850,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_update_view():
                 # Create a client
@@ -3948,7 +3948,7 @@ class ContactCenterInsightsClient(metaclass=ContactCenterInsightsClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import contact_center_insights_v1
+                    from google.cloud import contact_center_insights_v1
 
             def sample_delete_view():
                 # Create a client
