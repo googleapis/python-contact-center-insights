@@ -21,12 +21,12 @@ def create_phrase_matcher_any_of(
 ) -> contact_center_insights_v1.PhraseMatcher:
     """Creates a phrase matcher that matches any of the specified queries.
 
-        Args:
-            project_id:
-                The project identifier. For example, 'my-project'.
+    Args:
+        project_id:
+            The project identifier. For example, 'my-project'.
 
-        Returns:
-            A phrase matcher.
+    Returns:
+        A phrase matcher.
     """
     # Construct a parent resource.
     parent = (
