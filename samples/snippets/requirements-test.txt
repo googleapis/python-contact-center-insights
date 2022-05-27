@@ -1,4 +1,4 @@
 google-auth==2.6.6
 google-cloud-pubsub==2.12.1
-protobuf==3.20.1
+protobuf==4.21.0
 pytest==7.1.2
