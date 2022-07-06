@@ -10119,7 +10119,6 @@ def test_contact_center_insights_transport_auth_adc(transport_class):
     [
         transports.ContactCenterInsightsGrpcTransport,
         transports.ContactCenterInsightsGrpcAsyncIOTransport,
-        transports.ContactCenterInsightsRestTransport,
     ],
 )
 def test_contact_center_insights_transport_auth_gdch_credentials(transport_class):
