@@ -1,20 +1,20 @@
-Python Client for Contact Center AI Insights API (Preview)
-==========================================================
+Python Client for Contact Center AI Insights API
+================================================
 
-|ga| |pypi| |versions|
+|stable| |pypi| |versions|
 
-Python client for `Contact Center AI Insights`_
+`Contact Center AI Insights API`_:  helps users detect and visualize patterns in their contact center data.
 
 - `Client Library Documentation`_
 - `Product Documentation`_
 
-.. |ga| image:: https://img.shields.io/badge/support-ga-gold.svg
-   :target: https://github.com/googleapis/google-cloud-python/blob/main/README.rst#general-availability
+.. |stable| image:: https://img.shields.io/badge/support-stable-gold.svg
+   :target: https://github.com/googleapis/google-cloud-python/blob/main/README.rst#stability-levels
 .. |pypi| image:: https://img.shields.io/pypi/v/google-cloud-contact-center-insights.svg
    :target: https://pypi.org/project/google-cloud-contact-center-insights/
 .. |versions| image:: https://img.shields.io/pypi/pyversions/google-cloud-contact-center-insights.svg
    :target: https://pypi.org/project/google-cloud-contact-center-insights/
-.. _Contact Center AI Insights: https://cloud.google.com/contact-center/insights/docs
+.. _Contact Center AI Insights API: https://cloud.google.com/contact-center/insights/docs
 .. _Client Library Documentation: https://cloud.google.com/python/docs/reference/contactcenterinsights/latest
 .. _Product Documentation:  https://cloud.google.com/contact-center/insights/docs
 
@@ -25,12 +25,12 @@ In order to use this library, you first need to go through the following steps:
 
 1. `Select or create a Cloud Platform project.`_
 2. `Enable billing for your project.`_
-3. `Follow the Dialogflow quickstart.`_
+3. `Enable the Contact Center AI Insights API.`_
 4. `Setup Authentication.`_
 
 .. _Select or create a Cloud Platform project.: https://console.cloud.google.com/project
 .. _Enable billing for your project.: https://cloud.google.com/billing/docs/how-to/modify-project#enable_billing_for_a_project
-.. _Follow the Dialogflow quickstart.:  https://cloud.google.com/dialogflow/es/docs/quick/setup
+.. _Enable the Contact Center AI Insights API.:  https://cloud.google.com/contact-center/insights/docs
 .. _Setup Authentication.: https://googleapis.dev/python/google-api-core/latest/auth.html
 
 Installation
@@ -46,6 +46,31 @@ dependencies.
 
 .. _`virtualenv`: https://virtualenv.pypa.io/en/latest/
 
+
+Code samples and snippets
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Code samples and snippets live in the `samples/` folder.
+
+
+Supported Python Versions
+^^^^^^^^^^^^^^^^^^^^^^^^^
+Our client libraries are compatible with all current `active`_ and `maintenance`_ versions of
+Python.
+
+Python >= 3.7
+
+.. _active: https://devguide.python.org/devcycle/#in-development-main-branch
+.. _maintenance: https://devguide.python.org/devcycle/#maintenance-branches
+
+Unsupported Python Versions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Python <= 3.6
+
+If you are using an `end-of-life`_
+version of Python, we recommend that you update as soon as possible to an actively supported version.
+
+.. _end-of-life: https://devguide.python.org/devcycle/#end-of-life-branches
 
 Mac/Linux
 ^^^^^^^^^
