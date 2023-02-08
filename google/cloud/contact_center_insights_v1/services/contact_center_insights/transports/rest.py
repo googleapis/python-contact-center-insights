@@ -14,25 +14,27 @@
 # limitations under the License.
 #
 
-from google.auth.transport.requests import AuthorizedSession  # type: ignore
-import json  # type: ignore
-import grpc  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth import credentials as ga_credentials  # type: ignore
-from google.api_core import exceptions as core_exceptions
-from google.api_core import retry as retries
-from google.api_core import rest_helpers
-from google.api_core import rest_streaming
-from google.api_core import path_template
-from google.api_core import gapic_v1
-
-from google.protobuf import json_format
-from google.api_core import operations_v1
-from requests import __version__ as requests_version
 import dataclasses
+import json  # type: ignore
 import re
 from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
+
+from google.api_core import (
+    gapic_v1,
+    operations_v1,
+    path_template,
+    rest_helpers,
+    rest_streaming,
+)
+from google.api_core import exceptions as core_exceptions
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.transport.requests import AuthorizedSession  # type: ignore
+from google.protobuf import json_format
+import grpc  # type: ignore
+from requests import __version__ as requests_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -40,13 +42,16 @@ except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
 
-from google.cloud.contact_center_insights_v1.types import contact_center_insights
-from google.cloud.contact_center_insights_v1.types import resources
 from google.longrunning import operations_pb2  # type: ignore
 from google.protobuf import empty_pb2  # type: ignore
 
-from .base import ContactCenterInsightsTransport, DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from google.cloud.contact_center_insights_v1.types import (
+    contact_center_insights,
+    resources,
+)
 
+from .base import ContactCenterInsightsTransport
+from .base import DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
 
 DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
     gapic_version=BASE_DEFAULT_CLIENT_INFO.gapic_version,
@@ -351,7 +356,15 @@ class ContactCenterInsightsRestInterceptor:
 
 
     """
-    def pre_bulk_analyze_conversations(self, request: contact_center_insights.BulkAnalyzeConversationsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.BulkAnalyzeConversationsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_bulk_analyze_conversations(
+        self,
+        request: contact_center_insights.BulkAnalyzeConversationsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.BulkAnalyzeConversationsRequest,
+        Sequence[Tuple[str, str]],
+    ]:
         """Pre-rpc interceptor for bulk_analyze_conversations
 
         Override in a subclass to manipulate the request or metadata
@@ -359,7 +372,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_bulk_analyze_conversations(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_bulk_analyze_conversations(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for bulk_analyze_conversations
 
         Override in a subclass to manipulate the response
@@ -367,7 +382,15 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_calculate_issue_model_stats(self, request: contact_center_insights.CalculateIssueModelStatsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.CalculateIssueModelStatsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_calculate_issue_model_stats(
+        self,
+        request: contact_center_insights.CalculateIssueModelStatsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.CalculateIssueModelStatsRequest,
+        Sequence[Tuple[str, str]],
+    ]:
         """Pre-rpc interceptor for calculate_issue_model_stats
 
         Override in a subclass to manipulate the request or metadata
@@ -375,7 +398,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_calculate_issue_model_stats(self, response: contact_center_insights.CalculateIssueModelStatsResponse) -> contact_center_insights.CalculateIssueModelStatsResponse:
+    def post_calculate_issue_model_stats(
+        self, response: contact_center_insights.CalculateIssueModelStatsResponse
+    ) -> contact_center_insights.CalculateIssueModelStatsResponse:
         """Post-rpc interceptor for calculate_issue_model_stats
 
         Override in a subclass to manipulate the response
@@ -383,7 +408,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_calculate_stats(self, request: contact_center_insights.CalculateStatsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.CalculateStatsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_calculate_stats(
+        self,
+        request: contact_center_insights.CalculateStatsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.CalculateStatsRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for calculate_stats
 
         Override in a subclass to manipulate the request or metadata
@@ -391,7 +423,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_calculate_stats(self, response: contact_center_insights.CalculateStatsResponse) -> contact_center_insights.CalculateStatsResponse:
+    def post_calculate_stats(
+        self, response: contact_center_insights.CalculateStatsResponse
+    ) -> contact_center_insights.CalculateStatsResponse:
         """Post-rpc interceptor for calculate_stats
 
         Override in a subclass to manipulate the response
@@ -399,7 +433,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_analysis(self, request: contact_center_insights.CreateAnalysisRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.CreateAnalysisRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_analysis(
+        self,
+        request: contact_center_insights.CreateAnalysisRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.CreateAnalysisRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for create_analysis
 
         Override in a subclass to manipulate the request or metadata
@@ -407,7 +448,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_create_analysis(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_analysis(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_analysis
 
         Override in a subclass to manipulate the response
@@ -415,7 +458,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_conversation(self, request: contact_center_insights.CreateConversationRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.CreateConversationRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_conversation(
+        self,
+        request: contact_center_insights.CreateConversationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.CreateConversationRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for create_conversation
 
         Override in a subclass to manipulate the request or metadata
@@ -423,7 +473,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_create_conversation(self, response: resources.Conversation) -> resources.Conversation:
+    def post_create_conversation(
+        self, response: resources.Conversation
+    ) -> resources.Conversation:
         """Post-rpc interceptor for create_conversation
 
         Override in a subclass to manipulate the response
@@ -431,7 +483,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_issue_model(self, request: contact_center_insights.CreateIssueModelRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.CreateIssueModelRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_issue_model(
+        self,
+        request: contact_center_insights.CreateIssueModelRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.CreateIssueModelRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for create_issue_model
 
         Override in a subclass to manipulate the request or metadata
@@ -439,7 +498,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_create_issue_model(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_issue_model(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_issue_model
 
         Override in a subclass to manipulate the response
@@ -447,7 +508,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_phrase_matcher(self, request: contact_center_insights.CreatePhraseMatcherRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.CreatePhraseMatcherRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_phrase_matcher(
+        self,
+        request: contact_center_insights.CreatePhraseMatcherRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.CreatePhraseMatcherRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for create_phrase_matcher
 
         Override in a subclass to manipulate the request or metadata
@@ -455,7 +523,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_create_phrase_matcher(self, response: resources.PhraseMatcher) -> resources.PhraseMatcher:
+    def post_create_phrase_matcher(
+        self, response: resources.PhraseMatcher
+    ) -> resources.PhraseMatcher:
         """Post-rpc interceptor for create_phrase_matcher
 
         Override in a subclass to manipulate the response
@@ -463,7 +533,12 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_view(self, request: contact_center_insights.CreateViewRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.CreateViewRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_view(
+        self,
+        request: contact_center_insights.CreateViewRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[contact_center_insights.CreateViewRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_view
 
         Override in a subclass to manipulate the request or metadata
@@ -479,7 +554,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_analysis(self, request: contact_center_insights.DeleteAnalysisRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.DeleteAnalysisRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_analysis(
+        self,
+        request: contact_center_insights.DeleteAnalysisRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.DeleteAnalysisRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for delete_analysis
 
         Override in a subclass to manipulate the request or metadata
@@ -487,7 +569,13 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def pre_delete_conversation(self, request: contact_center_insights.DeleteConversationRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.DeleteConversationRequest, Sequence[Tuple[str, str]]]:
+    def pre_delete_conversation(
+        self,
+        request: contact_center_insights.DeleteConversationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.DeleteConversationRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for delete_conversation
 
         Override in a subclass to manipulate the request or metadata
@@ -495,7 +583,11 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def pre_delete_issue(self, request: contact_center_insights.DeleteIssueRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.DeleteIssueRequest, Sequence[Tuple[str, str]]]:
+    def pre_delete_issue(
+        self,
+        request: contact_center_insights.DeleteIssueRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[contact_center_insights.DeleteIssueRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_issue
 
         Override in a subclass to manipulate the request or metadata
@@ -503,7 +595,13 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def pre_delete_issue_model(self, request: contact_center_insights.DeleteIssueModelRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.DeleteIssueModelRequest, Sequence[Tuple[str, str]]]:
+    def pre_delete_issue_model(
+        self,
+        request: contact_center_insights.DeleteIssueModelRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.DeleteIssueModelRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for delete_issue_model
 
         Override in a subclass to manipulate the request or metadata
@@ -511,7 +609,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_delete_issue_model(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_delete_issue_model(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for delete_issue_model
 
         Override in a subclass to manipulate the response
@@ -519,7 +619,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_phrase_matcher(self, request: contact_center_insights.DeletePhraseMatcherRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.DeletePhraseMatcherRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_phrase_matcher(
+        self,
+        request: contact_center_insights.DeletePhraseMatcherRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.DeletePhraseMatcherRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for delete_phrase_matcher
 
         Override in a subclass to manipulate the request or metadata
@@ -527,7 +634,11 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def pre_delete_view(self, request: contact_center_insights.DeleteViewRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.DeleteViewRequest, Sequence[Tuple[str, str]]]:
+    def pre_delete_view(
+        self,
+        request: contact_center_insights.DeleteViewRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[contact_center_insights.DeleteViewRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_view
 
         Override in a subclass to manipulate the request or metadata
@@ -535,7 +646,13 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def pre_deploy_issue_model(self, request: contact_center_insights.DeployIssueModelRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.DeployIssueModelRequest, Sequence[Tuple[str, str]]]:
+    def pre_deploy_issue_model(
+        self,
+        request: contact_center_insights.DeployIssueModelRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.DeployIssueModelRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for deploy_issue_model
 
         Override in a subclass to manipulate the request or metadata
@@ -543,7 +660,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_deploy_issue_model(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_deploy_issue_model(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for deploy_issue_model
 
         Override in a subclass to manipulate the response
@@ -551,7 +670,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_export_insights_data(self, request: contact_center_insights.ExportInsightsDataRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.ExportInsightsDataRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_export_insights_data(
+        self,
+        request: contact_center_insights.ExportInsightsDataRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.ExportInsightsDataRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for export_insights_data
 
         Override in a subclass to manipulate the request or metadata
@@ -559,7 +685,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_export_insights_data(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_export_insights_data(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for export_insights_data
 
         Override in a subclass to manipulate the response
@@ -567,7 +695,12 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_analysis(self, request: contact_center_insights.GetAnalysisRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.GetAnalysisRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_analysis(
+        self,
+        request: contact_center_insights.GetAnalysisRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[contact_center_insights.GetAnalysisRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_analysis
 
         Override in a subclass to manipulate the request or metadata
@@ -583,7 +716,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_conversation(self, request: contact_center_insights.GetConversationRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.GetConversationRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_conversation(
+        self,
+        request: contact_center_insights.GetConversationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.GetConversationRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for get_conversation
 
         Override in a subclass to manipulate the request or metadata
@@ -591,7 +731,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_get_conversation(self, response: resources.Conversation) -> resources.Conversation:
+    def post_get_conversation(
+        self, response: resources.Conversation
+    ) -> resources.Conversation:
         """Post-rpc interceptor for get_conversation
 
         Override in a subclass to manipulate the response
@@ -599,7 +741,12 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_issue(self, request: contact_center_insights.GetIssueRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.GetIssueRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_issue(
+        self,
+        request: contact_center_insights.GetIssueRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[contact_center_insights.GetIssueRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_issue
 
         Override in a subclass to manipulate the request or metadata
@@ -615,7 +762,12 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_issue_model(self, request: contact_center_insights.GetIssueModelRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.GetIssueModelRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_issue_model(
+        self,
+        request: contact_center_insights.GetIssueModelRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[contact_center_insights.GetIssueModelRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_issue_model
 
         Override in a subclass to manipulate the request or metadata
@@ -623,7 +775,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_get_issue_model(self, response: resources.IssueModel) -> resources.IssueModel:
+    def post_get_issue_model(
+        self, response: resources.IssueModel
+    ) -> resources.IssueModel:
         """Post-rpc interceptor for get_issue_model
 
         Override in a subclass to manipulate the response
@@ -631,7 +785,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_phrase_matcher(self, request: contact_center_insights.GetPhraseMatcherRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.GetPhraseMatcherRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_phrase_matcher(
+        self,
+        request: contact_center_insights.GetPhraseMatcherRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.GetPhraseMatcherRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for get_phrase_matcher
 
         Override in a subclass to manipulate the request or metadata
@@ -639,7 +800,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_get_phrase_matcher(self, response: resources.PhraseMatcher) -> resources.PhraseMatcher:
+    def post_get_phrase_matcher(
+        self, response: resources.PhraseMatcher
+    ) -> resources.PhraseMatcher:
         """Post-rpc interceptor for get_phrase_matcher
 
         Override in a subclass to manipulate the response
@@ -647,7 +810,12 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_settings(self, request: contact_center_insights.GetSettingsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.GetSettingsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_settings(
+        self,
+        request: contact_center_insights.GetSettingsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[contact_center_insights.GetSettingsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_settings
 
         Override in a subclass to manipulate the request or metadata
@@ -663,7 +831,12 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_view(self, request: contact_center_insights.GetViewRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.GetViewRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_view(
+        self,
+        request: contact_center_insights.GetViewRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[contact_center_insights.GetViewRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_view
 
         Override in a subclass to manipulate the request or metadata
@@ -679,7 +852,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_ingest_conversations(self, request: contact_center_insights.IngestConversationsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.IngestConversationsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_ingest_conversations(
+        self,
+        request: contact_center_insights.IngestConversationsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.IngestConversationsRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for ingest_conversations
 
         Override in a subclass to manipulate the request or metadata
@@ -687,7 +867,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_ingest_conversations(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_ingest_conversations(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for ingest_conversations
 
         Override in a subclass to manipulate the response
@@ -695,7 +877,12 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_analyses(self, request: contact_center_insights.ListAnalysesRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.ListAnalysesRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_analyses(
+        self,
+        request: contact_center_insights.ListAnalysesRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[contact_center_insights.ListAnalysesRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_analyses
 
         Override in a subclass to manipulate the request or metadata
@@ -703,7 +890,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_list_analyses(self, response: contact_center_insights.ListAnalysesResponse) -> contact_center_insights.ListAnalysesResponse:
+    def post_list_analyses(
+        self, response: contact_center_insights.ListAnalysesResponse
+    ) -> contact_center_insights.ListAnalysesResponse:
         """Post-rpc interceptor for list_analyses
 
         Override in a subclass to manipulate the response
@@ -711,7 +900,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_conversations(self, request: contact_center_insights.ListConversationsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.ListConversationsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_conversations(
+        self,
+        request: contact_center_insights.ListConversationsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.ListConversationsRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for list_conversations
 
         Override in a subclass to manipulate the request or metadata
@@ -719,7 +915,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_list_conversations(self, response: contact_center_insights.ListConversationsResponse) -> contact_center_insights.ListConversationsResponse:
+    def post_list_conversations(
+        self, response: contact_center_insights.ListConversationsResponse
+    ) -> contact_center_insights.ListConversationsResponse:
         """Post-rpc interceptor for list_conversations
 
         Override in a subclass to manipulate the response
@@ -727,7 +925,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_issue_models(self, request: contact_center_insights.ListIssueModelsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.ListIssueModelsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_issue_models(
+        self,
+        request: contact_center_insights.ListIssueModelsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.ListIssueModelsRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for list_issue_models
 
         Override in a subclass to manipulate the request or metadata
@@ -735,7 +940,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_list_issue_models(self, response: contact_center_insights.ListIssueModelsResponse) -> contact_center_insights.ListIssueModelsResponse:
+    def post_list_issue_models(
+        self, response: contact_center_insights.ListIssueModelsResponse
+    ) -> contact_center_insights.ListIssueModelsResponse:
         """Post-rpc interceptor for list_issue_models
 
         Override in a subclass to manipulate the response
@@ -743,7 +950,12 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_issues(self, request: contact_center_insights.ListIssuesRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.ListIssuesRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_issues(
+        self,
+        request: contact_center_insights.ListIssuesRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[contact_center_insights.ListIssuesRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_issues
 
         Override in a subclass to manipulate the request or metadata
@@ -751,7 +963,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_list_issues(self, response: contact_center_insights.ListIssuesResponse) -> contact_center_insights.ListIssuesResponse:
+    def post_list_issues(
+        self, response: contact_center_insights.ListIssuesResponse
+    ) -> contact_center_insights.ListIssuesResponse:
         """Post-rpc interceptor for list_issues
 
         Override in a subclass to manipulate the response
@@ -759,7 +973,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_phrase_matchers(self, request: contact_center_insights.ListPhraseMatchersRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.ListPhraseMatchersRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_phrase_matchers(
+        self,
+        request: contact_center_insights.ListPhraseMatchersRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.ListPhraseMatchersRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for list_phrase_matchers
 
         Override in a subclass to manipulate the request or metadata
@@ -767,7 +988,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_list_phrase_matchers(self, response: contact_center_insights.ListPhraseMatchersResponse) -> contact_center_insights.ListPhraseMatchersResponse:
+    def post_list_phrase_matchers(
+        self, response: contact_center_insights.ListPhraseMatchersResponse
+    ) -> contact_center_insights.ListPhraseMatchersResponse:
         """Post-rpc interceptor for list_phrase_matchers
 
         Override in a subclass to manipulate the response
@@ -775,7 +998,12 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_views(self, request: contact_center_insights.ListViewsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.ListViewsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_views(
+        self,
+        request: contact_center_insights.ListViewsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[contact_center_insights.ListViewsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_views
 
         Override in a subclass to manipulate the request or metadata
@@ -783,7 +1011,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_list_views(self, response: contact_center_insights.ListViewsResponse) -> contact_center_insights.ListViewsResponse:
+    def post_list_views(
+        self, response: contact_center_insights.ListViewsResponse
+    ) -> contact_center_insights.ListViewsResponse:
         """Post-rpc interceptor for list_views
 
         Override in a subclass to manipulate the response
@@ -791,7 +1021,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_undeploy_issue_model(self, request: contact_center_insights.UndeployIssueModelRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.UndeployIssueModelRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_undeploy_issue_model(
+        self,
+        request: contact_center_insights.UndeployIssueModelRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.UndeployIssueModelRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for undeploy_issue_model
 
         Override in a subclass to manipulate the request or metadata
@@ -799,7 +1036,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_undeploy_issue_model(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_undeploy_issue_model(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for undeploy_issue_model
 
         Override in a subclass to manipulate the response
@@ -807,7 +1046,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_conversation(self, request: contact_center_insights.UpdateConversationRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.UpdateConversationRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_conversation(
+        self,
+        request: contact_center_insights.UpdateConversationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.UpdateConversationRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for update_conversation
 
         Override in a subclass to manipulate the request or metadata
@@ -815,7 +1061,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_update_conversation(self, response: resources.Conversation) -> resources.Conversation:
+    def post_update_conversation(
+        self, response: resources.Conversation
+    ) -> resources.Conversation:
         """Post-rpc interceptor for update_conversation
 
         Override in a subclass to manipulate the response
@@ -823,7 +1071,12 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_issue(self, request: contact_center_insights.UpdateIssueRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.UpdateIssueRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_issue(
+        self,
+        request: contact_center_insights.UpdateIssueRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[contact_center_insights.UpdateIssueRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_issue
 
         Override in a subclass to manipulate the request or metadata
@@ -839,7 +1092,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_issue_model(self, request: contact_center_insights.UpdateIssueModelRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.UpdateIssueModelRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_issue_model(
+        self,
+        request: contact_center_insights.UpdateIssueModelRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.UpdateIssueModelRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for update_issue_model
 
         Override in a subclass to manipulate the request or metadata
@@ -847,7 +1107,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_update_issue_model(self, response: resources.IssueModel) -> resources.IssueModel:
+    def post_update_issue_model(
+        self, response: resources.IssueModel
+    ) -> resources.IssueModel:
         """Post-rpc interceptor for update_issue_model
 
         Override in a subclass to manipulate the response
@@ -855,7 +1117,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_phrase_matcher(self, request: contact_center_insights.UpdatePhraseMatcherRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.UpdatePhraseMatcherRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_phrase_matcher(
+        self,
+        request: contact_center_insights.UpdatePhraseMatcherRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.UpdatePhraseMatcherRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for update_phrase_matcher
 
         Override in a subclass to manipulate the request or metadata
@@ -863,7 +1132,9 @@ class ContactCenterInsightsRestInterceptor:
         """
         return request, metadata
 
-    def post_update_phrase_matcher(self, response: resources.PhraseMatcher) -> resources.PhraseMatcher:
+    def post_update_phrase_matcher(
+        self, response: resources.PhraseMatcher
+    ) -> resources.PhraseMatcher:
         """Post-rpc interceptor for update_phrase_matcher
 
         Override in a subclass to manipulate the response
@@ -871,7 +1142,14 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_settings(self, request: contact_center_insights.UpdateSettingsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.UpdateSettingsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_settings(
+        self,
+        request: contact_center_insights.UpdateSettingsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        contact_center_insights.UpdateSettingsRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for update_settings
 
         Override in a subclass to manipulate the request or metadata
@@ -887,7 +1165,12 @@ class ContactCenterInsightsRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_view(self, request: contact_center_insights.UpdateViewRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[contact_center_insights.UpdateViewRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_view(
+        self,
+        request: contact_center_insights.UpdateViewRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[contact_center_insights.UpdateViewRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_view
 
         Override in a subclass to manipulate the request or metadata
@@ -926,20 +1209,21 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
 
     """
 
-    def __init__(self, *,
-            host: str = 'contactcenterinsights.googleapis.com',
-            credentials: Optional[ga_credentials.Credentials] = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            client_cert_source_for_mtls: Optional[Callable[[
-                ], Tuple[bytes, bytes]]] = None,
-            quota_project_id: Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            always_use_jwt_access: Optional[bool] = False,
-            url_scheme: str = 'https',
-            interceptor: Optional[ContactCenterInsightsRestInterceptor] = None,
-            api_audience: Optional[str] = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "contactcenterinsights.googleapis.com",
+        credentials: Optional[ga_credentials.Credentials] = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        client_cert_source_for_mtls: Optional[Callable[[], Tuple[bytes, bytes]]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
+        url_scheme: str = "https",
+        interceptor: Optional[ContactCenterInsightsRestInterceptor] = None,
+        api_audience: Optional[str] = None,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -978,7 +1262,9 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         # credentials object
         maybe_url_match = re.match("^(?P<scheme>http(?:s)?://)?(?P<host>.*)$", host)
         if maybe_url_match is None:
-            raise ValueError(f"Unexpected hostname structure: {host}")  # pragma: NO COVER
+            raise ValueError(
+                f"Unexpected hostname structure: {host}"
+            )  # pragma: NO COVER
 
         url_match_items = maybe_url_match.groupdict()
 
@@ -989,10 +1275,11 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
             credentials=credentials,
             client_info=client_info,
             always_use_jwt_access=always_use_jwt_access,
-            api_audience=api_audience
+            api_audience=api_audience,
         )
         self._session = AuthorizedSession(
-            self._credentials, default_host=self.DEFAULT_HOST)
+            self._credentials, default_host=self.DEFAULT_HOST
+        )
         self._operations_client: Optional[operations_v1.AbstractOperationsClient] = None
         if client_cert_source_for_mtls:
             self._session.configure_mtls_channel(client_cert_source_for_mtls)
@@ -1008,18 +1295,20 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         """
         # Only create a new client if we do not already have one.
         if self._operations_client is None:
-            http_options: Dict[str, List[Dict[str, str]]] = {
-            }
+            http_options: Dict[str, List[Dict[str, str]]] = {}
 
             rest_transport = operations_v1.OperationsRestTransport(
-                    host=self._host,
-                    # use the credentials which are saved
-                    credentials=self._credentials,
-                    scopes=self._scopes,
-                    http_options=http_options,
-                    path_prefix="v1")
+                host=self._host,
+                # use the credentials which are saved
+                credentials=self._credentials,
+                scopes=self._scopes,
+                http_options=http_options,
+                path_prefix="v1",
+            )
 
-            self._operations_client = operations_v1.AbstractOperationsClient(transport=rest_transport)
+            self._operations_client = operations_v1.AbstractOperationsClient(
+                transport=rest_transport
+            )
 
         # Return the client from cache.
         return self._operations_client
@@ -1028,81 +1317,93 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("BulkAnalyzeConversations")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.BulkAnalyzeConversationsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: contact_center_insights.BulkAnalyzeConversationsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the bulk analyze
-        conversations method over HTTP.
+            conversations method over HTTP.
 
-            Args:
-                request (~.contact_center_insights.BulkAnalyzeConversationsRequest):
-                    The request object. The request to analyze conversations
-                in bulk.
+                Args:
+                    request (~.contact_center_insights.BulkAnalyzeConversationsRequest):
+                        The request object. The request to analyze conversations
+                    in bulk.
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.operations_pb2.Operation:
-                    This resource represents a
-                long-running operation that is the
-                result of a network API call.
+                Returns:
+                    ~.operations_pb2.Operation:
+                        This resource represents a
+                    long-running operation that is the
+                    result of a network API call.
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/conversations:bulkAnalyze',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/conversations:bulkAnalyze",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_bulk_analyze_conversations(request, metadata)
-            pb_request = contact_center_insights.BulkAnalyzeConversationsRequest.pb(request)
+            request, metadata = self._interceptor.pre_bulk_analyze_conversations(
+                request, metadata
+            )
+            pb_request = contact_center_insights.BulkAnalyzeConversationsRequest.pb(
+                request
+            )
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1119,71 +1420,83 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("CalculateIssueModelStats")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.CalculateIssueModelStatsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> contact_center_insights.CalculateIssueModelStatsResponse:
+        def __call__(
+            self,
+            request: contact_center_insights.CalculateIssueModelStatsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> contact_center_insights.CalculateIssueModelStatsResponse:
             r"""Call the calculate issue model
-        stats method over HTTP.
+            stats method over HTTP.
 
-            Args:
-                request (~.contact_center_insights.CalculateIssueModelStatsRequest):
-                    The request object. Request to get statistics of an issue
-                model.
+                Args:
+                    request (~.contact_center_insights.CalculateIssueModelStatsRequest):
+                        The request object. Request to get statistics of an issue
+                    model.
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.contact_center_insights.CalculateIssueModelStatsResponse:
-                    Response of querying an issue model's
-                statistics.
+                Returns:
+                    ~.contact_center_insights.CalculateIssueModelStatsResponse:
+                        Response of querying an issue model's
+                    statistics.
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{issue_model=projects/*/locations/*/issueModels/*}:calculateIssueModelStats',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{issue_model=projects/*/locations/*/issueModels/*}:calculateIssueModelStats",
+                },
             ]
-            request, metadata = self._interceptor.pre_calculate_issue_model_stats(request, metadata)
-            pb_request = contact_center_insights.CalculateIssueModelStatsRequest.pb(request)
+            request, metadata = self._interceptor.pre_calculate_issue_model_stats(
+                request, metadata
+            )
+            pb_request = contact_center_insights.CalculateIssueModelStatsRequest.pb(
+                request
+            )
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1202,19 +1515,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("CalculateStats")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.CalculateStatsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> contact_center_insights.CalculateStatsResponse:
+        def __call__(
+            self,
+            request: contact_center_insights.CalculateStatsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> contact_center_insights.CalculateStatsResponse:
             r"""Call the calculate stats method over HTTP.
 
             Args:
@@ -1235,37 +1553,40 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{location=projects/*/locations/*}/conversations:calculateStats',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{location=projects/*/locations/*}/conversations:calculateStats",
+                },
             ]
             request, metadata = self._interceptor.pre_calculate_stats(request, metadata)
             pb_request = contact_center_insights.CalculateStatsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1284,19 +1605,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("CreateAnalysis")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.CreateAnalysisRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: contact_center_insights.CreateAnalysisRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create analysis method over HTTP.
 
             Args:
@@ -1316,11 +1642,12 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*/conversations/*}/analyses',
-                'body': 'analysis',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*/conversations/*}/analyses",
+                    "body": "analysis",
+                },
             ]
             request, metadata = self._interceptor.pre_create_analysis(request, metadata)
             pb_request = contact_center_insights.CreateAnalysisRequest.pb(request)
@@ -1329,33 +1656,35 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1372,19 +1701,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("CreateConversation")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.CreateConversationRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Conversation:
+        def __call__(
+            self,
+            request: contact_center_insights.CreateConversationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Conversation:
             r"""Call the create conversation method over HTTP.
 
             Args:
@@ -1401,46 +1735,51 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The conversation resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/conversations',
-                'body': 'conversation',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/conversations",
+                    "body": "conversation",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_conversation(request, metadata)
+            request, metadata = self._interceptor.pre_create_conversation(
+                request, metadata
+            )
             pb_request = contact_center_insights.CreateConversationRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1459,19 +1798,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("CreateIssueModel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.CreateIssueModelRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: contact_center_insights.CreateIssueModelRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create issue model method over HTTP.
 
             Args:
@@ -1491,46 +1835,51 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/issueModels',
-                'body': 'issue_model',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/issueModels",
+                    "body": "issue_model",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_issue_model(request, metadata)
+            request, metadata = self._interceptor.pre_create_issue_model(
+                request, metadata
+            )
             pb_request = contact_center_insights.CreateIssueModelRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1547,19 +1896,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("CreatePhraseMatcher")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.CreatePhraseMatcherRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.PhraseMatcher:
+        def __call__(
+            self,
+            request: contact_center_insights.CreatePhraseMatcherRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.PhraseMatcher:
             r"""Call the create phrase matcher method over HTTP.
 
             Args:
@@ -1576,46 +1930,51 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The phrase matcher resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/phraseMatchers',
-                'body': 'phrase_matcher',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/phraseMatchers",
+                    "body": "phrase_matcher",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_phrase_matcher(request, metadata)
+            request, metadata = self._interceptor.pre_create_phrase_matcher(
+                request, metadata
+            )
             pb_request = contact_center_insights.CreatePhraseMatcherRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1634,19 +1993,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("CreateView")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.CreateViewRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.View:
+        def __call__(
+            self,
+            request: contact_center_insights.CreateViewRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.View:
             r"""Call the create view method over HTTP.
 
             Args:
@@ -1663,11 +2027,12 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The View resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/views',
-                'body': 'view',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/views",
+                    "body": "view",
+                },
             ]
             request, metadata = self._interceptor.pre_create_view(request, metadata)
             pb_request = contact_center_insights.CreateViewRequest.pb(request)
@@ -1676,33 +2041,35 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1721,19 +2088,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("DeleteAnalysis")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.DeleteAnalysisRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: contact_center_insights.DeleteAnalysisRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete analysis method over HTTP.
 
             Args:
@@ -1746,37 +2118,40 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/conversations/*/analyses/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/conversations/*/analyses/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_delete_analysis(request, metadata)
             pb_request = contact_center_insights.DeleteAnalysisRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1787,19 +2162,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("DeleteConversation")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.DeleteConversationRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: contact_center_insights.DeleteConversationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete conversation method over HTTP.
 
             Args:
@@ -1812,37 +2192,42 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/conversations/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/conversations/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_conversation(request, metadata)
+            request, metadata = self._interceptor.pre_delete_conversation(
+                request, metadata
+            )
             pb_request = contact_center_insights.DeleteConversationRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1853,19 +2238,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("DeleteIssue")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.DeleteIssueRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: contact_center_insights.DeleteIssueRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete issue method over HTTP.
 
             Args:
@@ -1878,37 +2268,40 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/issueModels/*/issues/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/issueModels/*/issues/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_delete_issue(request, metadata)
             pb_request = contact_center_insights.DeleteIssueRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1919,19 +2312,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("DeleteIssueModel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.DeleteIssueModelRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: contact_center_insights.DeleteIssueModelRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the delete issue model method over HTTP.
 
             Args:
@@ -1951,37 +2349,42 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/issueModels/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/issueModels/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_issue_model(request, metadata)
+            request, metadata = self._interceptor.pre_delete_issue_model(
+                request, metadata
+            )
             pb_request = contact_center_insights.DeleteIssueModelRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1998,19 +2401,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("DeletePhraseMatcher")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.DeletePhraseMatcherRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: contact_center_insights.DeletePhraseMatcherRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete phrase matcher method over HTTP.
 
             Args:
@@ -2025,37 +2433,42 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/phraseMatchers/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/phraseMatchers/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_phrase_matcher(request, metadata)
+            request, metadata = self._interceptor.pre_delete_phrase_matcher(
+                request, metadata
+            )
             pb_request = contact_center_insights.DeletePhraseMatcherRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2066,19 +2479,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("DeleteView")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.DeleteViewRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: contact_center_insights.DeleteViewRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete view method over HTTP.
 
             Args:
@@ -2091,37 +2509,40 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/views/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/views/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_delete_view(request, metadata)
             pb_request = contact_center_insights.DeleteViewRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2132,19 +2553,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("DeployIssueModel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.DeployIssueModelRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: contact_center_insights.DeployIssueModelRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the deploy issue model method over HTTP.
 
             Args:
@@ -2164,46 +2590,51 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/issueModels/*}:deploy',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/issueModels/*}:deploy",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_deploy_issue_model(request, metadata)
+            request, metadata = self._interceptor.pre_deploy_issue_model(
+                request, metadata
+            )
             pb_request = contact_center_insights.DeployIssueModelRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2220,19 +2651,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("ExportInsightsData")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.ExportInsightsDataRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: contact_center_insights.ExportInsightsDataRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the export insights data method over HTTP.
 
             Args:
@@ -2252,46 +2688,51 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/insightsdata:export',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/insightsdata:export",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_export_insights_data(request, metadata)
+            request, metadata = self._interceptor.pre_export_insights_data(
+                request, metadata
+            )
             pb_request = contact_center_insights.ExportInsightsDataRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2308,19 +2749,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("GetAnalysis")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.GetAnalysisRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Analysis:
+        def __call__(
+            self,
+            request: contact_center_insights.GetAnalysisRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Analysis:
             r"""Call the get analysis method over HTTP.
 
             Args:
@@ -2337,37 +2783,40 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The analysis resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/conversations/*/analyses/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/conversations/*/analyses/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_analysis(request, metadata)
             pb_request = contact_center_insights.GetAnalysisRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2386,19 +2835,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("GetConversation")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.GetConversationRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Conversation:
+        def __call__(
+            self,
+            request: contact_center_insights.GetConversationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Conversation:
             r"""Call the get conversation method over HTTP.
 
             Args:
@@ -2415,37 +2869,42 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The conversation resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/conversations/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/conversations/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_conversation(request, metadata)
+            request, metadata = self._interceptor.pre_get_conversation(
+                request, metadata
+            )
             pb_request = contact_center_insights.GetConversationRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2464,19 +2923,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("GetIssue")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.GetIssueRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Issue:
+        def __call__(
+            self,
+            request: contact_center_insights.GetIssueRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Issue:
             r"""Call the get issue method over HTTP.
 
             Args:
@@ -2493,37 +2957,40 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The issue resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/issueModels/*/issues/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/issueModels/*/issues/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_issue(request, metadata)
             pb_request = contact_center_insights.GetIssueRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2542,19 +3009,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("GetIssueModel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.GetIssueModelRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.IssueModel:
+        def __call__(
+            self,
+            request: contact_center_insights.GetIssueModelRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.IssueModel:
             r"""Call the get issue model method over HTTP.
 
             Args:
@@ -2571,37 +3043,40 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The issue model resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/issueModels/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/issueModels/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_issue_model(request, metadata)
             pb_request = contact_center_insights.GetIssueModelRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2620,19 +3095,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("GetPhraseMatcher")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.GetPhraseMatcherRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.PhraseMatcher:
+        def __call__(
+            self,
+            request: contact_center_insights.GetPhraseMatcherRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.PhraseMatcher:
             r"""Call the get phrase matcher method over HTTP.
 
             Args:
@@ -2651,37 +3131,42 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The phrase matcher resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/phraseMatchers/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/phraseMatchers/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_phrase_matcher(request, metadata)
+            request, metadata = self._interceptor.pre_get_phrase_matcher(
+                request, metadata
+            )
             pb_request = contact_center_insights.GetPhraseMatcherRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2700,19 +3185,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("GetSettings")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.GetSettingsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Settings:
+        def __call__(
+            self,
+            request: contact_center_insights.GetSettingsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Settings:
             r"""Call the get settings method over HTTP.
 
             Args:
@@ -2731,37 +3221,40 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The settings resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/settings}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/settings}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_settings(request, metadata)
             pb_request = contact_center_insights.GetSettingsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2780,19 +3273,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("GetView")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.GetViewRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.View:
+        def __call__(
+            self,
+            request: contact_center_insights.GetViewRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.View:
             r"""Call the get view method over HTTP.
 
             Args:
@@ -2809,37 +3307,40 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The View resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/views/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/views/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_view(request, metadata)
             pb_request = contact_center_insights.GetViewRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2858,19 +3359,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("IngestConversations")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.IngestConversationsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: contact_center_insights.IngestConversationsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the ingest conversations method over HTTP.
 
             Args:
@@ -2890,46 +3396,51 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/conversations:ingest',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/conversations:ingest",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_ingest_conversations(request, metadata)
+            request, metadata = self._interceptor.pre_ingest_conversations(
+                request, metadata
+            )
             pb_request = contact_center_insights.IngestConversationsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2946,19 +3457,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("ListAnalyses")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.ListAnalysesRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> contact_center_insights.ListAnalysesResponse:
+        def __call__(
+            self,
+            request: contact_center_insights.ListAnalysesRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> contact_center_insights.ListAnalysesResponse:
             r"""Call the list analyses method over HTTP.
 
             Args:
@@ -2975,37 +3491,40 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The response to list analyses.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*/conversations/*}/analyses',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*/conversations/*}/analyses",
+                },
             ]
             request, metadata = self._interceptor.pre_list_analyses(request, metadata)
             pb_request = contact_center_insights.ListAnalysesRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3024,19 +3543,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("ListConversations")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.ListConversationsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> contact_center_insights.ListConversationsResponse:
+        def __call__(
+            self,
+            request: contact_center_insights.ListConversationsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> contact_center_insights.ListConversationsResponse:
             r"""Call the list conversations method over HTTP.
 
             Args:
@@ -3055,37 +3579,42 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/conversations',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/conversations",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_conversations(request, metadata)
+            request, metadata = self._interceptor.pre_list_conversations(
+                request, metadata
+            )
             pb_request = contact_center_insights.ListConversationsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3104,19 +3633,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("ListIssueModels")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.ListIssueModelsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> contact_center_insights.ListIssueModelsResponse:
+        def __call__(
+            self,
+            request: contact_center_insights.ListIssueModelsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> contact_center_insights.ListIssueModelsResponse:
             r"""Call the list issue models method over HTTP.
 
             Args:
@@ -3133,37 +3667,42 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The response of listing issue models.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/issueModels',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/issueModels",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_issue_models(request, metadata)
+            request, metadata = self._interceptor.pre_list_issue_models(
+                request, metadata
+            )
             pb_request = contact_center_insights.ListIssueModelsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3182,19 +3721,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("ListIssues")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.ListIssuesRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> contact_center_insights.ListIssuesResponse:
+        def __call__(
+            self,
+            request: contact_center_insights.ListIssuesRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> contact_center_insights.ListIssuesResponse:
             r"""Call the list issues method over HTTP.
 
             Args:
@@ -3211,37 +3755,40 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The response of listing issues.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*/issueModels/*}/issues',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*/issueModels/*}/issues",
+                },
             ]
             request, metadata = self._interceptor.pre_list_issues(request, metadata)
             pb_request = contact_center_insights.ListIssuesRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3260,19 +3807,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("ListPhraseMatchers")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.ListPhraseMatchersRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> contact_center_insights.ListPhraseMatchersResponse:
+        def __call__(
+            self,
+            request: contact_center_insights.ListPhraseMatchersRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> contact_center_insights.ListPhraseMatchersResponse:
             r"""Call the list phrase matchers method over HTTP.
 
             Args:
@@ -3291,37 +3843,42 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/phraseMatchers',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/phraseMatchers",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_phrase_matchers(request, metadata)
+            request, metadata = self._interceptor.pre_list_phrase_matchers(
+                request, metadata
+            )
             pb_request = contact_center_insights.ListPhraseMatchersRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3340,19 +3897,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("ListViews")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.ListViewsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> contact_center_insights.ListViewsResponse:
+        def __call__(
+            self,
+            request: contact_center_insights.ListViewsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> contact_center_insights.ListViewsResponse:
             r"""Call the list views method over HTTP.
 
             Args:
@@ -3369,37 +3931,40 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The response of listing views.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/views',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/views",
+                },
             ]
             request, metadata = self._interceptor.pre_list_views(request, metadata)
             pb_request = contact_center_insights.ListViewsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3418,19 +3983,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("UndeployIssueModel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.UndeployIssueModelRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: contact_center_insights.UndeployIssueModelRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the undeploy issue model method over HTTP.
 
             Args:
@@ -3452,46 +4022,51 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/issueModels/*}:undeploy',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/issueModels/*}:undeploy",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_undeploy_issue_model(request, metadata)
+            request, metadata = self._interceptor.pre_undeploy_issue_model(
+                request, metadata
+            )
             pb_request = contact_center_insights.UndeployIssueModelRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3508,19 +4083,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("UpdateConversation")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.UpdateConversationRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Conversation:
+        def __call__(
+            self,
+            request: contact_center_insights.UpdateConversationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Conversation:
             r"""Call the update conversation method over HTTP.
 
             Args:
@@ -3537,46 +4117,51 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The conversation resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{conversation.name=projects/*/locations/*/conversations/*}',
-                'body': 'conversation',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{conversation.name=projects/*/locations/*/conversations/*}",
+                    "body": "conversation",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_conversation(request, metadata)
+            request, metadata = self._interceptor.pre_update_conversation(
+                request, metadata
+            )
             pb_request = contact_center_insights.UpdateConversationRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3595,19 +4180,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("UpdateIssue")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.UpdateIssueRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Issue:
+        def __call__(
+            self,
+            request: contact_center_insights.UpdateIssueRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Issue:
             r"""Call the update issue method over HTTP.
 
             Args:
@@ -3624,11 +4214,12 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The issue resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{issue.name=projects/*/locations/*/issueModels/*/issues/*}',
-                'body': 'issue',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{issue.name=projects/*/locations/*/issueModels/*/issues/*}",
+                    "body": "issue",
+                },
             ]
             request, metadata = self._interceptor.pre_update_issue(request, metadata)
             pb_request = contact_center_insights.UpdateIssueRequest.pb(request)
@@ -3637,33 +4228,35 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3682,19 +4275,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("UpdateIssueModel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.UpdateIssueModelRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.IssueModel:
+        def __call__(
+            self,
+            request: contact_center_insights.UpdateIssueModelRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.IssueModel:
             r"""Call the update issue model method over HTTP.
 
             Args:
@@ -3711,46 +4309,51 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The issue model resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{issue_model.name=projects/*/locations/*/issueModels/*}',
-                'body': 'issue_model',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{issue_model.name=projects/*/locations/*/issueModels/*}",
+                    "body": "issue_model",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_issue_model(request, metadata)
+            request, metadata = self._interceptor.pre_update_issue_model(
+                request, metadata
+            )
             pb_request = contact_center_insights.UpdateIssueModelRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3769,19 +4372,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("UpdatePhraseMatcher")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.UpdatePhraseMatcherRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.PhraseMatcher:
+        def __call__(
+            self,
+            request: contact_center_insights.UpdatePhraseMatcherRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.PhraseMatcher:
             r"""Call the update phrase matcher method over HTTP.
 
             Args:
@@ -3800,46 +4408,51 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The phrase matcher resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{phrase_matcher.name=projects/*/locations/*/phraseMatchers/*}',
-                'body': 'phrase_matcher',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{phrase_matcher.name=projects/*/locations/*/phraseMatchers/*}",
+                    "body": "phrase_matcher",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_phrase_matcher(request, metadata)
+            request, metadata = self._interceptor.pre_update_phrase_matcher(
+                request, metadata
+            )
             pb_request = contact_center_insights.UpdatePhraseMatcherRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3858,19 +4471,26 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("UpdateSettings")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "updateMask" : {},        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "updateMask": {},
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.UpdateSettingsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Settings:
+        def __call__(
+            self,
+            request: contact_center_insights.UpdateSettingsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Settings:
             r"""Call the update settings method over HTTP.
 
             Args:
@@ -3889,11 +4509,12 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The settings resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{settings.name=projects/*/locations/*/settings}',
-                'body': 'settings',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{settings.name=projects/*/locations/*/settings}",
+                    "body": "settings",
+                },
             ]
             request, metadata = self._interceptor.pre_update_settings(request, metadata)
             pb_request = contact_center_insights.UpdateSettingsRequest.pb(request)
@@ -3902,33 +4523,35 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3947,19 +4570,24 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         def __hash__(self):
             return hash("UpdateView")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: contact_center_insights.UpdateViewRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.View:
+        def __call__(
+            self,
+            request: contact_center_insights.UpdateViewRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.View:
             r"""Call the update view method over HTTP.
 
             Args:
@@ -3976,11 +4604,12 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
                     The View resource.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{view.name=projects/*/locations/*/views/*}',
-                'body': 'view',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{view.name=projects/*/locations/*/views/*}",
+                    "body": "view",
+                },
             ]
             request, metadata = self._interceptor.pre_update_view(request, metadata)
             pb_request = contact_center_insights.UpdateViewRequest.pb(request)
@@ -3989,33 +4618,35 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4031,300 +4662,357 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
             return resp
 
     @property
-    def bulk_analyze_conversations(self) -> Callable[
-            [contact_center_insights.BulkAnalyzeConversationsRequest],
-            operations_pb2.Operation]:
+    def bulk_analyze_conversations(
+        self,
+    ) -> Callable[
+        [contact_center_insights.BulkAnalyzeConversationsRequest],
+        operations_pb2.Operation,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._BulkAnalyzeConversations(self._session, self._host, self._interceptor) # type: ignore
+        return self._BulkAnalyzeConversations(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def calculate_issue_model_stats(self) -> Callable[
-            [contact_center_insights.CalculateIssueModelStatsRequest],
-            contact_center_insights.CalculateIssueModelStatsResponse]:
+    def calculate_issue_model_stats(
+        self,
+    ) -> Callable[
+        [contact_center_insights.CalculateIssueModelStatsRequest],
+        contact_center_insights.CalculateIssueModelStatsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CalculateIssueModelStats(self._session, self._host, self._interceptor) # type: ignore
+        return self._CalculateIssueModelStats(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def calculate_stats(self) -> Callable[
-            [contact_center_insights.CalculateStatsRequest],
-            contact_center_insights.CalculateStatsResponse]:
+    def calculate_stats(
+        self,
+    ) -> Callable[
+        [contact_center_insights.CalculateStatsRequest],
+        contact_center_insights.CalculateStatsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CalculateStats(self._session, self._host, self._interceptor) # type: ignore
+        return self._CalculateStats(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_analysis(self) -> Callable[
-            [contact_center_insights.CreateAnalysisRequest],
-            operations_pb2.Operation]:
+    def create_analysis(
+        self,
+    ) -> Callable[
+        [contact_center_insights.CreateAnalysisRequest], operations_pb2.Operation
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateAnalysis(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateAnalysis(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_conversation(self) -> Callable[
-            [contact_center_insights.CreateConversationRequest],
-            resources.Conversation]:
+    def create_conversation(
+        self,
+    ) -> Callable[
+        [contact_center_insights.CreateConversationRequest], resources.Conversation
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateConversation(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateConversation(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_issue_model(self) -> Callable[
-            [contact_center_insights.CreateIssueModelRequest],
-            operations_pb2.Operation]:
+    def create_issue_model(
+        self,
+    ) -> Callable[
+        [contact_center_insights.CreateIssueModelRequest], operations_pb2.Operation
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateIssueModel(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateIssueModel(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_phrase_matcher(self) -> Callable[
-            [contact_center_insights.CreatePhraseMatcherRequest],
-            resources.PhraseMatcher]:
+    def create_phrase_matcher(
+        self,
+    ) -> Callable[
+        [contact_center_insights.CreatePhraseMatcherRequest], resources.PhraseMatcher
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreatePhraseMatcher(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreatePhraseMatcher(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_view(self) -> Callable[
-            [contact_center_insights.CreateViewRequest],
-            resources.View]:
+    def create_view(
+        self,
+    ) -> Callable[[contact_center_insights.CreateViewRequest], resources.View]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateView(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateView(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_analysis(self) -> Callable[
-            [contact_center_insights.DeleteAnalysisRequest],
-            empty_pb2.Empty]:
+    def delete_analysis(
+        self,
+    ) -> Callable[[contact_center_insights.DeleteAnalysisRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteAnalysis(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteAnalysis(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_conversation(self) -> Callable[
-            [contact_center_insights.DeleteConversationRequest],
-            empty_pb2.Empty]:
+    def delete_conversation(
+        self,
+    ) -> Callable[[contact_center_insights.DeleteConversationRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteConversation(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteConversation(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_issue(self) -> Callable[
-            [contact_center_insights.DeleteIssueRequest],
-            empty_pb2.Empty]:
+    def delete_issue(
+        self,
+    ) -> Callable[[contact_center_insights.DeleteIssueRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteIssue(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteIssue(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_issue_model(self) -> Callable[
-            [contact_center_insights.DeleteIssueModelRequest],
-            operations_pb2.Operation]:
+    def delete_issue_model(
+        self,
+    ) -> Callable[
+        [contact_center_insights.DeleteIssueModelRequest], operations_pb2.Operation
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteIssueModel(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteIssueModel(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_phrase_matcher(self) -> Callable[
-            [contact_center_insights.DeletePhraseMatcherRequest],
-            empty_pb2.Empty]:
+    def delete_phrase_matcher(
+        self,
+    ) -> Callable[
+        [contact_center_insights.DeletePhraseMatcherRequest], empty_pb2.Empty
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeletePhraseMatcher(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeletePhraseMatcher(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_view(self) -> Callable[
-            [contact_center_insights.DeleteViewRequest],
-            empty_pb2.Empty]:
+    def delete_view(
+        self,
+    ) -> Callable[[contact_center_insights.DeleteViewRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteView(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteView(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def deploy_issue_model(self) -> Callable[
-            [contact_center_insights.DeployIssueModelRequest],
-            operations_pb2.Operation]:
+    def deploy_issue_model(
+        self,
+    ) -> Callable[
+        [contact_center_insights.DeployIssueModelRequest], operations_pb2.Operation
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeployIssueModel(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeployIssueModel(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def export_insights_data(self) -> Callable[
-            [contact_center_insights.ExportInsightsDataRequest],
-            operations_pb2.Operation]:
+    def export_insights_data(
+        self,
+    ) -> Callable[
+        [contact_center_insights.ExportInsightsDataRequest], operations_pb2.Operation
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ExportInsightsData(self._session, self._host, self._interceptor) # type: ignore
+        return self._ExportInsightsData(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_analysis(self) -> Callable[
-            [contact_center_insights.GetAnalysisRequest],
-            resources.Analysis]:
+    def get_analysis(
+        self,
+    ) -> Callable[[contact_center_insights.GetAnalysisRequest], resources.Analysis]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetAnalysis(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetAnalysis(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_conversation(self) -> Callable[
-            [contact_center_insights.GetConversationRequest],
-            resources.Conversation]:
+    def get_conversation(
+        self,
+    ) -> Callable[
+        [contact_center_insights.GetConversationRequest], resources.Conversation
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetConversation(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetConversation(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_issue(self) -> Callable[
-            [contact_center_insights.GetIssueRequest],
-            resources.Issue]:
+    def get_issue(
+        self,
+    ) -> Callable[[contact_center_insights.GetIssueRequest], resources.Issue]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetIssue(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetIssue(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_issue_model(self) -> Callable[
-            [contact_center_insights.GetIssueModelRequest],
-            resources.IssueModel]:
+    def get_issue_model(
+        self,
+    ) -> Callable[[contact_center_insights.GetIssueModelRequest], resources.IssueModel]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetIssueModel(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetIssueModel(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_phrase_matcher(self) -> Callable[
-            [contact_center_insights.GetPhraseMatcherRequest],
-            resources.PhraseMatcher]:
+    def get_phrase_matcher(
+        self,
+    ) -> Callable[
+        [contact_center_insights.GetPhraseMatcherRequest], resources.PhraseMatcher
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetPhraseMatcher(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetPhraseMatcher(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_settings(self) -> Callable[
-            [contact_center_insights.GetSettingsRequest],
-            resources.Settings]:
+    def get_settings(
+        self,
+    ) -> Callable[[contact_center_insights.GetSettingsRequest], resources.Settings]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetSettings(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetSettings(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_view(self) -> Callable[
-            [contact_center_insights.GetViewRequest],
-            resources.View]:
+    def get_view(
+        self,
+    ) -> Callable[[contact_center_insights.GetViewRequest], resources.View]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetView(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetView(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def ingest_conversations(self) -> Callable[
-            [contact_center_insights.IngestConversationsRequest],
-            operations_pb2.Operation]:
+    def ingest_conversations(
+        self,
+    ) -> Callable[
+        [contact_center_insights.IngestConversationsRequest], operations_pb2.Operation
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._IngestConversations(self._session, self._host, self._interceptor) # type: ignore
+        return self._IngestConversations(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_analyses(self) -> Callable[
-            [contact_center_insights.ListAnalysesRequest],
-            contact_center_insights.ListAnalysesResponse]:
+    def list_analyses(
+        self,
+    ) -> Callable[
+        [contact_center_insights.ListAnalysesRequest],
+        contact_center_insights.ListAnalysesResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListAnalyses(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListAnalyses(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_conversations(self) -> Callable[
-            [contact_center_insights.ListConversationsRequest],
-            contact_center_insights.ListConversationsResponse]:
+    def list_conversations(
+        self,
+    ) -> Callable[
+        [contact_center_insights.ListConversationsRequest],
+        contact_center_insights.ListConversationsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListConversations(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListConversations(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_issue_models(self) -> Callable[
-            [contact_center_insights.ListIssueModelsRequest],
-            contact_center_insights.ListIssueModelsResponse]:
+    def list_issue_models(
+        self,
+    ) -> Callable[
+        [contact_center_insights.ListIssueModelsRequest],
+        contact_center_insights.ListIssueModelsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListIssueModels(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListIssueModels(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_issues(self) -> Callable[
-            [contact_center_insights.ListIssuesRequest],
-            contact_center_insights.ListIssuesResponse]:
+    def list_issues(
+        self,
+    ) -> Callable[
+        [contact_center_insights.ListIssuesRequest],
+        contact_center_insights.ListIssuesResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListIssues(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListIssues(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_phrase_matchers(self) -> Callable[
-            [contact_center_insights.ListPhraseMatchersRequest],
-            contact_center_insights.ListPhraseMatchersResponse]:
+    def list_phrase_matchers(
+        self,
+    ) -> Callable[
+        [contact_center_insights.ListPhraseMatchersRequest],
+        contact_center_insights.ListPhraseMatchersResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListPhraseMatchers(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListPhraseMatchers(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_views(self) -> Callable[
-            [contact_center_insights.ListViewsRequest],
-            contact_center_insights.ListViewsResponse]:
+    def list_views(
+        self,
+    ) -> Callable[
+        [contact_center_insights.ListViewsRequest],
+        contact_center_insights.ListViewsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListViews(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListViews(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def undeploy_issue_model(self) -> Callable[
-            [contact_center_insights.UndeployIssueModelRequest],
-            operations_pb2.Operation]:
+    def undeploy_issue_model(
+        self,
+    ) -> Callable[
+        [contact_center_insights.UndeployIssueModelRequest], operations_pb2.Operation
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UndeployIssueModel(self._session, self._host, self._interceptor) # type: ignore
+        return self._UndeployIssueModel(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_conversation(self) -> Callable[
-            [contact_center_insights.UpdateConversationRequest],
-            resources.Conversation]:
+    def update_conversation(
+        self,
+    ) -> Callable[
+        [contact_center_insights.UpdateConversationRequest], resources.Conversation
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateConversation(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateConversation(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_issue(self) -> Callable[
-            [contact_center_insights.UpdateIssueRequest],
-            resources.Issue]:
+    def update_issue(
+        self,
+    ) -> Callable[[contact_center_insights.UpdateIssueRequest], resources.Issue]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateIssue(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateIssue(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_issue_model(self) -> Callable[
-            [contact_center_insights.UpdateIssueModelRequest],
-            resources.IssueModel]:
+    def update_issue_model(
+        self,
+    ) -> Callable[
+        [contact_center_insights.UpdateIssueModelRequest], resources.IssueModel
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateIssueModel(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateIssueModel(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_phrase_matcher(self) -> Callable[
-            [contact_center_insights.UpdatePhraseMatcherRequest],
-            resources.PhraseMatcher]:
+    def update_phrase_matcher(
+        self,
+    ) -> Callable[
+        [contact_center_insights.UpdatePhraseMatcherRequest], resources.PhraseMatcher
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdatePhraseMatcher(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdatePhraseMatcher(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_settings(self) -> Callable[
-            [contact_center_insights.UpdateSettingsRequest],
-            resources.Settings]:
+    def update_settings(
+        self,
+    ) -> Callable[[contact_center_insights.UpdateSettingsRequest], resources.Settings]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateSettings(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateSettings(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_view(self) -> Callable[
-            [contact_center_insights.UpdateViewRequest],
-            resources.View]:
+    def update_view(
+        self,
+    ) -> Callable[[contact_center_insights.UpdateViewRequest], resources.View]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateView(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateView(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
     def kind(self) -> str:
@@ -4334,6 +5022,4 @@ class ContactCenterInsightsRestTransport(ContactCenterInsightsTransport):
         self._session.close()
 
 
-__all__=(
-    'ContactCenterInsightsRestTransport',
-)
+__all__ = ("ContactCenterInsightsRestTransport",)
